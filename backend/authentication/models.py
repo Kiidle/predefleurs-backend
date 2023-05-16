@@ -1,26 +1,47 @@
-from django.contrib.auth.models import AbstractUser
+
+
+from django.contrib.auth.models import AbstractUser, Permission
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import Group
 from datetime import datetime, time
 
+
 class User(AbstractUser):
     pp = models.ImageField(upload_to='static/images/uploads/profile', null=True, blank=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    username = models.CharField(unique=True)
+    username = models.CharField(unique=True, max_length=100)
     email = models.EmailField(unique=True)
+    groups = models.ManyToManyField(
+        Group,
+        blank=True,
+        help_text=
+            'The groups this user belongs to. A user will get all permissions '
+            'granted to each of their groups.'
+        ,
+        related_name='authentication_user_set'  # Update the related name
+    )
+
+    user_permissions = models.ManyToManyField(
+        Permission,
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name='authentication_user_set'  # Update the related name
+    )
 
     def get_profile_url(self):
         if self.pp and hasattr(self.pp, 'url'):
             return self.pp.url
 
+
 class Data(models.Model):
-    verified = models.BooleanField(default=False,null=False,blank=False)
+    verified = models.BooleanField(default=False, null=False, blank=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="data")
 
     def __str__(self):
         return f"Data of {self.user.username}"
+
 
 class Address(models.Model):
     class Country(models.TextChoices):
@@ -63,6 +84,7 @@ class Address(models.Model):
 
     def __str__(self):
         return f"Address for {self.user.username}"
+
 
 class Warn(models.Model):
     class Reasons(models.TextChoices):
