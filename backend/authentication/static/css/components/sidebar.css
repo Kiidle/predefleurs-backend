@@ -66,7 +66,7 @@
     align-items: center;
 }
 
-.sidebar .logout {
+.sidebar .loginout {
     margin: 12px;
     background-color: red;
     color: white;
@@ -78,8 +78,9 @@
     font-weight: bold;
     transition: 0.2s;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.sidebar .logout:hover {
+.sidebar .loginout:hover {
     background-color: #b40000;
 }

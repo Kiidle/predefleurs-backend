@@ -5,68 +5,66 @@
         <div class="grid">
             <div class="logo">
             </div>
-            {% if request.user.is_authenticated %}
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/home_filled.svg' %}" alt="home"/>
-                        </div>
-                        <div class="text">
-                            <p>Home</p>
-                        </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/home_filled.svg' %}" alt="home"/>
+                    </div>
+                    <div class="text">
+                        <p>Home</p>
                     </div>
                 </div>
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/group_filled.svg' %}" alt="group"/>
-                        </div>
-                        <div class="text">
-                            <p>Benutzer</p>
-                        </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/group_filled.svg' %}" alt="group"/>
+                    </div>
+                    <div class="text">
+                        <p>Benutzer</p>
                     </div>
                 </div>
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
-                        </div>
-                        <div class="text">
-                            <p>Cloud</p>
-                        </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                    </div>
+                    <div class="text">
+                        <p>Cloud</p>
                     </div>
                 </div>
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
-                        </div>
-                        <div class="text">
-                            <p>Management</p>
-                        </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
+                    </div>
+                    <div class="text">
+                        <p>Management</p>
                     </div>
                 </div>
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/forum_filled.svg' %}" alt="forum"/>
-                        </div>
-                        <div class="text">
-                            <p>Forum</p>
-                        </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/forum_filled.svg' %}" alt="forum"/>
+                    </div>
+                    <div class="text">
+                        <p>Forum</p>
                     </div>
                 </div>
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/social_filled.svg' %}" alt="social"/>
-                        </div>
-                        <div class="text">
-                            <p>Medien</p>
-                        </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/social_filled.svg' %}" alt="social"/>
+                    </div>
+                    <div class="text">
+                        <p>Medien</p>
                     </div>
                 </div>
-            {% endif %}
+            </div>
             <div class="section">
                 <div class="not-current">
                     <div class="icon">
@@ -77,9 +75,15 @@
                     </div>
                 </div>
             </div>
-            <div class="logout">
-                <p>Abmelden</p>
-            </div>
+            {% if request.user.is_authenticated %}
+                <div class="loginout">
+                    <p>Abmelden</p>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="loginout">
+                    <p>Anmelden</p>
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>
