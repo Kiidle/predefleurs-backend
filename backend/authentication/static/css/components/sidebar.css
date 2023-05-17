@@ -1,0 +1,85 @@
+.sidebar {
+    width: 250px;
+    background-color: white;
+    height: calc(100vh - 50px);
+}
+
+.sidebar .flexify {
+    display: flex;
+}
+
+.sidebar .flexify .grid {
+    width: 100%;
+    height: calc(100vh - 51px);
+    display: inline-block;
+    overflow-y: scroll;
+}
+
+.sidebar .flexify .grid::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar .flexify .grid .logo {
+    display: flex;
+    height: 250px;
+    width: 250px;
+    background-color: #eeeeee;
+}
+
+.sidebar .flexify .grid .section {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    cursor: pointer;
+    text-decoration: none;
+    color: gray;
+    height: 48px;
+    border-bottom-color: #d9d9d9;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.sidebar .flexify .grid .section:hover {
+    background-color: #eeeeee;
+}
+
+.sidebar .flexify .grid .section .not-current {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    grid-template-rows: 24px;
+    grid-template-areas: "icon text";
+    grid-gap: 12px;
+    filter: brightness(0) saturate(100%) invert(56%) sepia(4%) saturate(13%) hue-rotate(346deg) brightness(96%) contrast(87%);
+
+}
+
+.sidebar .flexify .grid .section .not-current .icon {
+    grid-area: icon;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar .flexify .grid .section .not-current .text {
+    grid-area: text;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .logout {
+    margin: 12px;
+    background-color: red;
+    color: white;
+    padding: 12px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.sidebar .logout:hover {
+    background-color: #b40000;
+}

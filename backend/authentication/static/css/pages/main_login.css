@@ -1,0 +1,60 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.content .card {
+    display: block;
+    background-color: white;
+    width: 100%;
+    max-width: 512px;
+    margin: auto;
+    border-radius: 2px;
+    margin: 12px;
+}
+
+.content .card .header {
+    background-color: red;
+    height: 48px;
+    color: white;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: 48px;
+    grid-template-areas:
+        "image text";
+}
+
+.content .card .header .image {
+    grid-area: image;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .card .header .image img {
+    width: 75%;
+    height: 75%;
+}
+
+.content .card .header .text {
+    grid-area: text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border-radius: 2px 2px 0 0;
+}
+
+.content .card .form-container {
+    background-color: white;
+    padding: 12px;
+    border-radius: 0 0 12px 12px;
+}
+
+.content .card a {
+    text-decoration: none;
+    color: red;
+}

@@ -7,6 +7,7 @@ from django.contrib.auth.models import Group
 from datetime import datetime, time
 
 
+
 class User(AbstractUser):
     pp = models.ImageField(upload_to='static/images/uploads/profile', null=True, blank=True)
     first_name = models.CharField(max_length=100)

@@ -1,0 +1,22 @@
+header {
+    height: 50px;
+    background-color: red;
+    padding: 0 12px;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "title .";
+}
+
+header .title {
+    grid-area: title;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.3rem;
+}

@@ -29,24 +29,24 @@ class SignUpView(generic.CreateView):
         group, created = Group.objects.get_or_create(name='developer')
         group, created = Group.objects.get_or_create(name='admin')
 
-    @receiver(post_save, sender=User)
-    def create_user_settings(sender, instance, created, **kwargs):
-        if created:
-            Data.objects.create(user=instance)
-            Address.objects.create(user=instance)
-
     def form_valid(self, form):
         response = super().form_valid(form)
         group = Group.objects.get(name='customer')
         self.object.groups.add(group)
         return response
 
+    @receiver(post_save, sender=User)
+    def create_user_settings(sender, instance, created, **kwargs):
+        if created:
+            Data.objects.create(user=instance)
+            Address.objects.create(user=instance)
+
 def sign_in(request):
     if request.method == "GET":
         if request.user.is_authenticated:
             return redirect("/")
         form = LoginForm()
-        return render(request, "pages/authentication/login.html")
+        return render(request, "pages/authentication/login.html", {"form": form})
 
     elif request.method == "POST":
         form = LoginForm(request.POST)
