@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_home.css' %}">
+    <title>Anmelden</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Home" %}
+<main>
+    {% include 'components/sidebar/dashboard.html' %}
+    <div class="content">
+        <div class="dashboard">
+            <div class="cell">
+                <div class="card">
+                    <div class="icon">
+                        <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                    </div>
+                    <div class="title">
+                        <p>Cloud</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="card">
+                    <div class="icon">
+                        <img src="{% static 'svgs/management_filled.svg' %}" alt="cloud"/>
+                    </div>
+                    <div class="title">
+                        <p>Management</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="card">
+                    <div class="icon">
+                        <img src="{% static 'svgs/forum_filled.svg' %}" alt="cloud"/>
+                    </div>
+                    <div class="title">
+                        <p>Forum</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="card">
+                    <div class="icon">
+                        <img src="{% static 'svgs/social_filled.svg' %}" alt="cloud"/>
+                    </div>
+                    <div class="title">
+                        <p>Medien</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>

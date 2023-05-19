@@ -1,0 +1,91 @@
+{% load static %}
+
+<div class="sidebar">
+    <div class="flexify">
+        <div class="grid">
+            <div class="logo">
+            </div>
+            <a href="{% url 'home' %}" class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/home_filled.svg' %}" alt="home"/>
+                    </div>
+                    <div class="text">
+                        <p>Home</p>
+                    </div>
+                </div>
+            </a>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/group_filled.svg' %}" alt="group"/>
+                    </div>
+                    <div class="text">
+                        <p>Benutzer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                    </div>
+                    <div class="text">
+                        <p>Cloud</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
+                    </div>
+                    <div class="text">
+                        <p>Management</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/forum_filled.svg' %}" alt="forum"/>
+                    </div>
+                    <div class="text">
+                        <p>Forum</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/social_filled.svg' %}" alt="social"/>
+                    </div>
+                    <div class="text">
+                        <p>Medien</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
+                        <img src="{% static 'svgs/help_filled.svg' %}" alt="help"/>
+                    </div>
+                    <div class=" text">
+                        <p>Hilfe</p>
+                    </div>
+                </div>
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="loginout loginout-authentication">
+                    <p>Abmelden</p>
+                    <img src="{% static 'svgs/logout.svg' %}" alt="logout"/>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="loginout loginout-authentication">
+                    <p>Anmelden</p>
+                    <img src="{% static 'svgs/login.svg' %}" alt="logout"/>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

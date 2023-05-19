@@ -6,7 +6,7 @@
             <div class="logo">
             </div>
             <div class="section">
-                <div class="not-current">
+                <div class="current">
                     <div class="icon">
                         <img src="{% static 'svgs/home_filled.svg' %}" alt="home"/>
                     </div>
@@ -76,12 +76,14 @@
                 </div>
             </div>
             {% if request.user.is_authenticated %}
-                <div class="loginout">
+                <div class="loginout loginout-dashboard">
                     <p>Abmelden</p>
+                    <img src="{% static 'svgs/logout.svg' %}" alt="logout"/>
                 </div>
             {% else %}
-                <a href="{% url 'login' %}" class="loginout">
+                <a href="{% url 'login' %}" class="loginout loginout-dashboard">
                     <p>Anmelden</p>
+                    <img src="{% static 'svgs/login.svg' %}" alt="logout"/>
                 </a>
             {% endif %}
         </div>

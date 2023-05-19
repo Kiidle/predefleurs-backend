@@ -1,7 +1,6 @@
 footer {
     position: fixed;
     bottom: 12px;
-    left: 0;
     right: 12px;
     height: 24px;
     display: flex;
@@ -51,7 +50,7 @@ footer {
     margin: 0 1px;
 }
 
-.kiidle .red {
+.kiidle .f-red {
     color: red;
     margin: 0 2px;
 }

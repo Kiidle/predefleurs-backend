@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
-    <link rel="stylesheet" href="{% static 'css/pages/main_login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_authentication.css' %}">
     <title>Anmelden</title>
 </head>
 <body>
-{% include 'components/header.html' with title="Anmelden" %}
+{% include 'components/header/authentication.html' with title="Anmelden" %}
 <main>
-    {% include 'components/sidebar.html' %}
+    {% include 'components/sidebar/authentication.html' %}
     <div class="content">
         <div class="card">
             <div class="header">

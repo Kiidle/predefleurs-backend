@@ -1,0 +1,88 @@
+.content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+    overflow-y: scroll;
+    height: calc(100vh - 50px);
+}
+
+.content .dashboard {
+    max-width: 1024px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 172px 172px;
+    grid-row-gap: 64px;
+}
+
+.content .dashboard .cell {
+    height: 172px;
+    display: flex;
+    justify-content: center;
+}
+
+.content .dashboard .cell .card {
+    padding: 12px;
+    height: 148px;
+    width: 148px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 96px 28px;
+    grid-template-areas:
+        "icon"
+        "title";
+    grid-row-gap: 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+.content .dashboard .cell .card:hover {
+    transform: scale(1.1);
+}
+
+.content .dashboard .cell .card .icon {
+    grid-area: icon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .dashboard .cell .card .icon img {
+    height: 100%;
+    width: 100%;
+}
+
+.content .dashboard .cell .card .title {
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 790px) {
+    .content .dashboard {
+        max-width: 512px;
+        width: 100%;
+        grid-gap: 1px;
+    }
+}
+
+@media screen and (max-width: 584px) {
+    .content .dashboard {
+        width: 344px;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 416px) {
+    .content .dashboard {
+        width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-rows: 172px 172px 172px 172px;
+    }
+}

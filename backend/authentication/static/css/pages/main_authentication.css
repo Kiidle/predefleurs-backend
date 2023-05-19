@@ -3,6 +3,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    overflow-y: scroll;
+    height: calc(100vh - 50px);
 }
 
 .content .card {
@@ -10,7 +12,6 @@
     background-color: white;
     width: 100%;
     max-width: 512px;
-    margin: auto;
     border-radius: 2px;
     margin: 12px;
 }
@@ -57,4 +58,33 @@
 .content .card a {
     text-decoration: none;
     color: red;
+}
+
+@media screen and (max-width: 790px) {
+    .content {
+        display: block;
+    }
+
+    .content .card {
+        margin: 12px auto;
+    }
+
+    .content .card .form-container {
+        border-left-color: #d9d9d9;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+}
+
+@media screen and (max-width: 512px) {
+    .content {
+        display: flex;
+        align-items: unset;
+        padding: 0;
+    }
+
+    .content .card {
+        margin: 0;
+    }
+
 }

@@ -61,3 +61,7 @@ def sign_in(request):
 
         messages.error(request, f"Benutzername oder Passwort ist falsch.")
         return render(request, "pages/authentication/login.html", {"form": form})
+
+class HomeView(generic.ListView):
+    model = User
+    template_name = "pages/root/home.html"
