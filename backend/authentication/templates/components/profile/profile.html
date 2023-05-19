@@ -1,0 +1,30 @@
+{% load static %}
+<div class="profile">
+    <div class="card">
+        {% if request.user.is_authenticated %}
+            <div class="grid">
+                <div class="profile-picture">
+                    <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                </div>
+                <div class="name">
+                    <p>{{ request.user.first_name }} {{ request.user.last_name }}</p>
+                </div>
+                <div class="role">
+                    {% for group in request.user.groups.all %}
+                        {% if group.name == 'customer' %}
+                            <p class="citizen">Kunde</p>
+                        {% elif group.name == 'lew' %}
+                            <p class="lew">{{ group.name|title }}</p>
+                        {% else %}
+                            <p>Unverified Group</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <a href="{% url 'login' %}" class="login">
+                <p>Anmelden</p>
+            </a>
+        {% endif %}
+    </div>
+</div>

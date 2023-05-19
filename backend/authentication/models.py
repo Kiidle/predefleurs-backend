@@ -10,8 +10,8 @@ from datetime import datetime, time
 
 class User(AbstractUser):
     pp = models.ImageField(upload_to='static/images/uploads/profile', null=True, blank=True)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=14)
+    last_name = models.CharField(max_length=14)
     username = models.CharField(unique=True, max_length=100)
     email = models.EmailField(unique=True)
     groups = models.ManyToManyField(

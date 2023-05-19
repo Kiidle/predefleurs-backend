@@ -1,10 +1,23 @@
 .content {
     display: flex;
     width: 100%;
-    justify-content: center;
     padding: 12px;
     overflow-y: scroll;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 75px);
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.content .blockify {
+    display: block;
+    width: 100%;
+}
+
+.content .blockify .flexify {
+    display: flex;
+    justify-content: center;
 }
 
 .content .dashboard {
@@ -14,6 +27,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 172px 172px;
     grid-row-gap: 64px;
+    margin-bottom: 12px;
 }
 
 .content .dashboard .cell {
@@ -64,6 +78,37 @@
     font-size: 1.2rem;
 }
 
+.content .flexify .web {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 256px;
+    grid-gap: 12px;
+}
+
+.content .web .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content .web .cell .button {
+    width: 100%;
+    background-color: #b6b6b6;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.content .web .cell .button:hover {
+    background-color: #888888;
+}
+
 @media screen and (max-width: 790px) {
     .content .dashboard {
         max-width: 512px;
@@ -77,12 +122,24 @@
         width: 344px;
         grid-template-columns: 1fr 1fr;
     }
+
+    .content .flexify .web {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin: 96px 0;
+    }
 }
 
-@media screen and (max-width: 416px) {
+@media screen and (max-width: 472px) {
     .content .dashboard {
         width: 100%;
         grid-template-columns: 1fr;
         grid-template-rows: 172px 172px 172px 172px;
+    }
+
+        .content .flexify .web {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        margin: 96px 0;
     }
 }

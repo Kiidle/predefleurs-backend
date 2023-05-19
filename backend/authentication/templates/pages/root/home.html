@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/pages/main_home.css' %}">
@@ -18,44 +19,78 @@
 <main>
     {% include 'components/sidebar/dashboard.html' %}
     <div class="content">
-        <div class="dashboard">
-            <div class="cell">
-                <div class="card">
-                    <div class="icon">
-                        <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="flexify">
+                <div class="dashboard">
+                    <div class="cell">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="{% static 'svgs/store_filled.svg' %}" alt="cloud"/>
+                            </div>
+                            <div class="title">
+                                <p>Produkte</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="title">
-                        <p>Cloud</p>
+                    <div class="cell">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="{% static 'svgs/forum_filled.svg' %}" alt="cloud"/>
+                            </div>
+                            <div class="title">
+                                <p>Forum</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="{% static 'svgs/social_filled.svg' %}" alt="cloud"/>
+                            </div>
+                            <div class="title">
+                                <p>Medien</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                            </div>
+                            <div class="title">
+                                <p>Cloud</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="{% static 'svgs/management_filled.svg' %}" alt="cloud"/>
+                            </div>
+                            <div class="title">
+                                <p>Management</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="cell">
-                <div class="card">
-                    <div class="icon">
-                        <img src="{% static 'svgs/management_filled.svg' %}" alt="cloud"/>
+            <div class="flexify">
+                <div class="web">
+                    <div class="cell">
+                        <div class="button">
+                            <p>Impressum</p>
+                        </div>
                     </div>
-                    <div class="title">
-                        <p>Management</p>
+                    <div class="cell">
+                        <div class="button">
+                            <p>Datenschutzerklärung</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="cell">
-                <div class="card">
-                    <div class="icon">
-                        <img src="{% static 'svgs/forum_filled.svg' %}" alt="cloud"/>
-                    </div>
-                    <div class="title">
-                        <p>Forum</p>
-                    </div>
-                </div>
-            </div>
-            <div class="cell">
-                <div class="card">
-                    <div class="icon">
-                        <img src="{% static 'svgs/social_filled.svg' %}" alt="cloud"/>
-                    </div>
-                    <div class="title">
-                        <p>Medien</p>
+                    <div class="cell">
+                        <div class="button">
+                            <p>Nutzungsbedingungen</p>
+                        </div>
                     </div>
                 </div>
             </div>

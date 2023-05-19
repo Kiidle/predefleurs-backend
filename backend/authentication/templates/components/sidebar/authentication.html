@@ -8,7 +8,6 @@
             <a href="{% url 'home' %}" class="section">
                 <div class="not-current">
                     <div class="icon">
-                        <img src="{% static 'svgs/home_filled.svg' %}" alt="home"/>
                     </div>
                     <div class="text">
                         <p>Home</p>
@@ -48,6 +47,16 @@
             <div class="section">
                 <div class="not-current">
                     <div class="icon">
+                        <img src="{% static 'svgs/store_filled.svg' %}" alt="forum"/>
+                    </div>
+                    <div class="text">
+                        <p>Produkte</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="not-current">
+                    <div class="icon">
                         <img src="{% static 'svgs/forum_filled.svg' %}" alt="forum"/>
                     </div>
                     <div class="text">
@@ -76,10 +85,10 @@
                 </div>
             </div>
             {% if request.user.is_authenticated %}
-                <div class="loginout loginout-authentication">
+                <a href="{% url 'logout' %}" class="loginout loginout-authentication">
                     <p>Abmelden</p>
                     <img src="{% static 'svgs/logout.svg' %}" alt="logout"/>
-                </div>
+                </a>
             {% else %}
                 <a href="{% url 'login' %}" class="loginout loginout-authentication">
                     <p>Anmelden</p>

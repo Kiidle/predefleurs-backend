@@ -7,6 +7,10 @@
     height: calc(100vh - 50px);
 }
 
+.content::-webkit-scrollbar {
+    display: none;
+}
+
 .content .card {
     display: block;
     background-color: white;

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.dispatch import receiver
 from django.contrib import messages
 from django.shortcuts import render, redirect
@@ -61,6 +62,12 @@ def sign_in(request):
 
         messages.error(request, f"Benutzername oder Passwort ist falsch.")
         return render(request, "pages/authentication/login.html", {"form": form})
+
+@login_required
+def custom_logout(request):
+    logout(request)
+    return redirect("home")
+
 
 class HomeView(generic.ListView):
     model = User
