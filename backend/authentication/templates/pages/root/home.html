@@ -17,7 +17,7 @@
 <body>
 {% include 'components/header/dashboard.html' with title="Home" %}
 <main>
-    {% include 'components/sidebar/dashboard.html' %}
+    {% include 'components/sidebar/sidebar.html' with page="home" %}
     <div class="content">
         <div class="blockify">
             {% include 'components/profile/profile.html' %}
@@ -78,19 +78,19 @@
             <div class="flexify">
                 <div class="web">
                     <div class="cell">
-                        <div class="button">
+                        <a href="{% url 'legalnotice' %}" class="button">
                             <p>Impressum</p>
-                        </div>
+                        </a>
                     </div>
                     <div class="cell">
-                        <div class="button">
+                        <a href="{% url 'privacy' %}" class="button">
                             <p>Datenschutzerklärung</p>
-                        </div>
+                        </a>
                     </div>
                     <div class="cell">
-                        <div class="button">
+                        <a href="{% url 'terms' %}" class="button">
                             <p>Nutzungsbedingungen</p>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

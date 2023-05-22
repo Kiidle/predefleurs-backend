@@ -72,3 +72,15 @@ def custom_logout(request):
 class HomeView(generic.ListView):
     model = User
     template_name = "pages/root/home.html"
+
+class LegalNoticeView(generic.ListView):
+    model = User
+    template_name = "pages/laws/legalnotice.html"
+
+class PrivacyView(generic.ListView):
+    model = User
+    template_name = "pages/laws/privacy.html"
+
+class TermsView(generic.ListView):
+    model = User
+    template_name = "pages/laws/terms.html"

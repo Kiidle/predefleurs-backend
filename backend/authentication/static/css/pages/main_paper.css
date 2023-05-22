@@ -1,0 +1,78 @@
+.content {
+    display: flex;
+    width: 100%;
+    padding: 12px;
+    overflow-y: scroll;
+    height: calc(100vh - 75px);
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.content .blockify {
+    display: block;
+    width: 100%;
+}
+
+.content .blockify .flexify {
+    display: flex;
+    justify-content: center;
+    height: calc(100% - 75px)
+}
+
+.content .blockify .flexify .paper {
+    width: 100%;
+    max-width: 720px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    background-color: white;
+    padding: 24px;
+    overflow-y: scroll;
+}
+
+.content .blockify .flexify .paper::-webkit-scrollbar {
+    display: none;
+}
+
+.content .blockify .flexify .paper .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.content .blockify .flexify .paper .textsection {
+    margin: 36px 12px;
+}
+
+.content .blockify .flexify .paper .textsection h2 {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 12px 0;
+}
+
+.content .blockify .flexify .paper .textsection h3 {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 12px 0;
+}
+
+.content .blockify .flexify .paper .textsection p {
+    color: gray;
+    margin: 6px 0;
+}
+
+.content .blockify .flexify .paper .textsection .tab1 {
+    padding: 0 0 0 12px;
+}
+
+.content .blockify .flexify .paper .textsection .tab2 {
+    padding: 0 0 0 18px;
+}
+
+.content .blockify .flexify .paper .textsection a {
+    color: #ffae00;
+    text-decoration: none;
+}

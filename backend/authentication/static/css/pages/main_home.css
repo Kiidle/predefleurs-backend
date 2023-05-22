@@ -103,6 +103,7 @@
     justify-content: center;
     transition: 0.2s;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .content .web .cell .button:hover {

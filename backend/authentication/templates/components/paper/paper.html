@@ -1,0 +1,14 @@
+<div class="paper">
+    <div class="title">
+        <p>{{ headline }}</p>
+    </div>
+    {% if page == "legalnotice" %}
+        {% include 'components/paper/content/legalnotice.html' %}
+    {% endif %}
+    {% if page == "privacy" %}
+        {% include 'components/paper/content/privacy.html' %}
+    {% endif %}
+    {% if page == "terms" %}
+        {% include 'components/paper/content/terms.html' %}
+    {% endif %}
+</div>
