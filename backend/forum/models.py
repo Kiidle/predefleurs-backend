@@ -9,7 +9,7 @@ User = get_user_model()
 class Feedback(models.Model):
     stars = models.IntegerField(default=0)
     content = models.CharField(max_length=200)
-    author = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="feedback")
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="feedback")
 
     def __str__(self):
         return f"{self.author.username} gave {self.stars} Stars"

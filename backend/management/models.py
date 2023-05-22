@@ -20,5 +20,5 @@ class Task(models.Model):
 
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=200)
-    author = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="created_tasks")
-    assigned = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name="tasks")
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="created_tasks")
+    assigned = models.OneToOneField(User, null=True, on_delete=models.SET_NULL, related_name="tasks")

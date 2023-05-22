@@ -8,7 +8,7 @@ User = get_user_model()
 
 class Folder(models.Model):
     title = models.CharField(max_length=50)
-    creator = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="created_folders")
+    creator = models.ForeignKey(User,null=True, on_delete=models.SET_NULL, related_name="created_folders")
 
     def __str__(self):
         return f"Folder: {self.title}"
@@ -26,7 +26,7 @@ class UserFolder(models.Model):
 class File(models.Model):
     title = models.CharField(max_length=50)
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name="files")
-    creator = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="created_files")
+    creator = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="created_files")
 
     def __str__(self):
         return f"File: {self.title}"
@@ -45,7 +45,7 @@ class TextSection(models.Model):
     title = models.CharField(null=True, max_length=50)
     content = models.TextField(max_length=1000)
     arrange = models.IntegerField()
-    creator = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="created_textsection")
+    creator = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="created_textsection")
 
     def __str__(self):
         return f"Textabschitt: {self.title}"

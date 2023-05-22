@@ -12,6 +12,10 @@ class Article(models.Model):
     image = models.ImageField(upload_to='static/images/uploads/store')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="articles")
 
+    def get_image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
     def __str__(self):
         return f"Article: {self.title}"
 class Reservation(models.Model):
@@ -19,6 +23,7 @@ class Reservation(models.Model):
         OPEN = "Offen", "Offen"
         APPROVED = "Angenommen", "Angenommen"
         DENIED = "Abgelehnt", "Abgelehnt"
+        READY = "Abholbereit", "Abholbereit"
         DONE = "Abgeschlossen", "Abgeschlossen"
 
     article = models.OneToOneField(Article, on_delete=models.CASCADE, related_name="reservations")

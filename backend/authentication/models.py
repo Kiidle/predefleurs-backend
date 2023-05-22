@@ -81,6 +81,7 @@ class Address(models.Model):
     location = models.CharField(max_length=50)
     postalcode = models.IntegerField(default=0)
     street = models.CharField(max_length=50)
+    housenumber = models.CharField(max_length=10)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="address")
 
     def __str__(self):

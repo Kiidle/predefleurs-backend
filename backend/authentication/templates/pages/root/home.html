@@ -24,12 +24,22 @@
             <div class="flexify">
                 <div class="dashboard">
                     <div class="cell">
-                        <div class="card">
+                        <a href="{% url 'articles' %}" class="card">
                             <div class="icon">
                                 <img src="{% static 'svgs/store_filled.svg' %}" alt="cloud"/>
                             </div>
                             <div class="title">
                                 <p>Produkte</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="cell">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="{% static 'svgs/forum_filled.svg' %}" alt="cloud"/>
+                            </div>
+                            <div class="title">
+                                <p>Öffnungszeiten</p>
                             </div>
                         </div>
                     </div>

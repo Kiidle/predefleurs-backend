@@ -1,0 +1,54 @@
+{% load static %}
+
+<div class="sidebar">
+    <div class="flexify">
+        <div class="grid">
+            {% if page == 'product' %}
+                <div class="section">
+                    <div class="current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/products.svg' %}" alt="products"/>
+                        </div>
+                        <div class="text">
+                            <p>Produkte</p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="section">
+                    <div class="not-current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/products.svg' %}" alt="products"/>
+                        </div>
+                        <div class="text">
+                            <p>Produkte</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if page == 'reservations' %}
+                <div class="section">
+                    <div class="current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/reservations.svg' %}" alt="products"/>
+                        </div>
+                        <div class="text">
+                            <p>Reservierungen</p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="section">
+                    <div class="not-current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/reservations.svg' %}" alt="products"/>
+                        </div>
+                        <div class="text">
+                            <p>Reservierungen</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
