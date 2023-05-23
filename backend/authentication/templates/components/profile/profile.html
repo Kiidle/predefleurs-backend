@@ -12,11 +12,15 @@
                 <div class="role">
                     {% for group in request.user.groups.all %}
                         {% if group.name == 'customer' %}
-                            <p class="citizen">Kunde</p>
-                        {% elif group.name == 'lew' %}
-                            <p class="lew">{{ group.name|title }}</p>
+                            <p class="customer">Kunde</p>
+                        {% elif group.name == 'staff' %}
+                            <p class="staff">Mitarbeiter</p>
+                        {% elif group.name == 'developer' %}
+                            <p class="developer">Entwickler</p>
+                        {% elif group.name == 'admin' %}
+                            <p class="admin">Administrator</p>
                         {% else %}
-                            <p>Unverified Group</p>
+                            <p class="unverified">Unverifizierte Gruppe</p>
                         {% endif %}
                     {% endfor %}
                 </div>

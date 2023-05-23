@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/pages/main_home.css' %}">
-    <title>Anmelden</title>
+    <title>Dashboard</title>
 </head>
 <body>
 {% include 'components/header/dashboard.html' with title="Home" %}
@@ -26,7 +26,7 @@
                     <div class="cell">
                         <a href="{% url 'articles' %}" class="card">
                             <div class="icon">
-                                <img src="{% static 'svgs/store_filled.svg' %}" alt="cloud"/>
+                                <img src="{% static 'svgs/store_filled.svg' %}" alt="products"/>
                             </div>
                             <div class="title">
                                 <p>Produkte</p>
@@ -36,7 +36,7 @@
                     <div class="cell">
                         <div class="card">
                             <div class="icon">
-                                <img src="{% static 'svgs/info.svg' %}" alt="cloud"/>
+                                <img src="{% static 'svgs/info.svg' %}" alt="about"/>
                             </div>
                             <div class="title">
                                 <p>Über uns</p>
@@ -44,44 +44,92 @@
                         </div>
                     </div>
                     <div class="cell">
-                        <div class="card">
-                            <div class="icon">
-                                <img src="{% static 'svgs/forum_filled.svg' %}" alt="cloud"/>
+                        {% if request.user.is_authenticated %}
+                            <div class="card">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/forum_filled.svg' %}" alt="cloud"/>
+                                </div>
+                                <div class="title">
+                                    <p>Forum</p>
+                                </div>
                             </div>
-                            <div class="title">
-                                <p>Forum</p>
+                        {% else %}
+                            <div class="card-disabled">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/forum_filled.svg' %}" alt="cloud"/>
+                                </div>
+                                <div class="title">
+                                    <p>Forum</p>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
                     </div>
                     <div class="cell">
-                        <div class="card">
-                            <div class="icon">
-                                <img src="{% static 'svgs/social_filled.svg' %}" alt="cloud"/>
+                        {% if request.user.is_authenticated %}
+                            <div class="card">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/social_filled.svg' %}" alt="media"/>
+                                </div>
+                                <div class="title">
+                                    <p>Medien</p>
+                                </div>
                             </div>
-                            <div class="title">
-                                <p>Medien</p>
+                        {% else %}
+                            <div class="card-disabled">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/social_filled.svg' %}" alt="media"/>
+                                </div>
+                                <div class="title">
+                                    <p>Medien</p>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
                     </div>
                     <div class="cell">
-                        <div class="card">
-                            <div class="icon">
-                                <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
-                            </div>
-                            <div class="title">
-                                <p>Cloud</p>
-                            </div>
-                        </div>
+                        {% for group in request.user.groups.all %}
+                            {% if group.name == 'admin' or group.name == 'developer' or group.name == 'staff' %}
+                                <div class="card">
+                                    <div class="icon">
+                                        <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                                    </div>
+                                    <div class="title">
+                                        <p>Cloud</p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="card-disabled">
+                                    <div class="icon">
+                                        <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                                    </div>
+                                    <div class="title">
+                                        <p>Cloud</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="cell">
-                        <div class="card">
-                            <div class="icon">
-                                <img src="{% static 'svgs/management_filled.svg' %}" alt="cloud"/>
-                            </div>
-                            <div class="title">
-                                <p>Management</p>
-                            </div>
-                        </div>
+                        {% for group in request.user.groups.all %}
+                            {% if group.name == 'admin' or group.name == 'developer' or group.name == 'staff' %}
+                                <div class="card">
+                                    <div class="icon">
+                                        <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
+                                    </div>
+                                    <div class="title">
+                                        <p>Management</p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="card-disabled">
+                                    <div class="icon">
+                                        <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
+                                    </div>
+                                    <div class="title">
+                                        <p>Management</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

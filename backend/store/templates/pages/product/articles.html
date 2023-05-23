@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/pages/main_store.css' %}">
-    <title>Anmelden</title>
+    <title>Artikeln</title>
 </head>
 <body>
 {% include 'components/header/dashboard.html' with title="Produkte" %}
@@ -22,35 +22,76 @@
     <div class="content">
         <div class="blockify">
             {% include 'components/profile/profile.html' %}
-            <a class="button add" href="">
-                <img src="{% static 'svgs/add.svg' %}" alt="add"/>
-            </a>
+            {% for group in request.user.groups.all %}
+                {% if group.name == 'admin' or group.name == 'staff' %}
+                    <a class="button add" href="{% url 'article_create' %}">
+                        <img src="{% static 'svgs/add.svg' %}" alt="add"/>
+                    </a>
+                {% endif %}
+            {% endfor %}
             <div class="flexify">
                 <div class="articles">
                     {% for article in articles %}
                         <div class="cell">
-                            <div class="card">
-                                <div class="title">
-                                    <p>{{ article.title }}</p>
-                                </div>
-                                <div class="image">
-                                    <img src="{{ article.get_image_url }}" alt="{{ article.get_image_url }}"/>
-                                </div>
-                                <div class="description">
-                                    <p>{{ article.description }}</p>
-                                </div>
-                                <div class="reservation">
-                                    <p>Reservieren</p>
-                                </div>
-                                <div class="buttons">
-                                    <div class="button modify">
-                                        <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
+                            {% for group in request.user.groups.all %}
+                                {% if group.name == 'admin' or group.name == 'staff' %}
+                                    <div class="card card-perm">
+                                        <div class="title">
+                                            <p>{{ article.title }}</p>
+                                        </div>
+                                        <div class="image">
+                                            <img src="{{ article.get_image_url }}" alt="{{ article.get_image_url }}"/>
+                                        </div>
+                                        <div class="description">
+                                            <p>{{ article.description }}</p>
+                                        </div>
+                                        {% if request.user.is_authenticated %}
+                                            <div class="reservation">
+                                                <p>Reservieren</p>
+                                            </div>
+                                        {% else %}
+                                            <a href="{% url 'login' %}" class="reservation">
+                                                <p>Reservieren</p>
+                                            </a>
+                                        {% endif %}
+                                        <div class="buttons">
+                                            <a href="{% url 'article_update' article.id %}" class="button modify">
+                                                <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
+                                            </a>
+                                            <a href="{% url 'article_delete' article.id %}" class="button delete">
+                                                <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
+                                            </a>
+                                        </div>
+                                        <div class="author">
+                                            <p>{{ article.author.first_name }} {{ article.author.last_name }}</p>
+                                        </div>
                                     </div>
-                                    <div class="button delete">
-                                        <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
+                                {% else %}
+                                    <div class="card card-noperm">
+                                        <div class="title">
+                                            <p>{{ article.title }}</p>
+                                        </div>
+                                        <div class="image">
+                                            <img src="{{ article.get_image_url }}" alt="{{ article.get_image_url }}"/>
+                                        </div>
+                                        <div class="description">
+                                            <p>{{ article.description }}</p>
+                                        </div>
+                                        {% if request.user.is_authenticated %}
+                                            <div class="reservation">
+                                                <p>Reservieren</p>
+                                            </div>
+                                        {% else %}
+                                            <a href="{% url 'login' %}" class="reservation">
+                                                <p>Reservieren</p>
+                                            </a>
+                                        {% endif %}
+                                        <div class="author">
+                                            <p>{{ article.author.first_name }} {{ article.author.last_name }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     {% endfor %}
                 </div>

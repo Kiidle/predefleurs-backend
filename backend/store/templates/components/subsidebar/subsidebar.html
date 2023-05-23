@@ -4,7 +4,7 @@
     <div class="flexify">
         <div class="grid">
             {% if page == 'product' %}
-                <div class="section">
+                <a href="{% url 'articles' %}" class="section">
                     <div class="current">
                         <div class="icon">
                             <img src="{% static 'svgs/products.svg' %}" alt="products"/>
@@ -13,9 +13,9 @@
                             <p>Produkte</p>
                         </div>
                     </div>
-                </div>
+                </a>
             {% else %}
-                <div class="section">
+                <a href="{% url 'articles' %}" class="section">
                     <div class="not-current">
                         <div class="icon">
                             <img src="{% static 'svgs/products.svg' %}" alt="products"/>
@@ -24,7 +24,7 @@
                             <p>Produkte</p>
                         </div>
                     </div>
-                </div>
+                </a>
             {% endif %}
             {% if page == 'reservations' %}
                 <div class="section">

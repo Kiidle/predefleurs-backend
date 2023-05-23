@@ -55,3 +55,19 @@
     grid-area: role;
     color: gray;
 }
+
+.profile .card .grid .role .customer {
+    color: #ff8800;
+}
+
+.profile .card .grid .role .staff {
+    color: #5e53ff
+}
+
+.profile .card .grid .role .developer {
+    color: #37a9c7
+}
+
+.profile .card .grid .role .admin {
+    color: #9d0300
+}

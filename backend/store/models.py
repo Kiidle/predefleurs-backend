@@ -18,6 +18,10 @@ class Article(models.Model):
 
     def __str__(self):
         return f"Article: {self.title}"
+
+    class Meta:
+        ordering = ['-id', "title"]
+
 class Reservation(models.Model):
     class Status(models.TextChoices):
         OPEN = "Offen", "Offen"

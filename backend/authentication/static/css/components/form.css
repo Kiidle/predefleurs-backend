@@ -15,7 +15,7 @@ form label {
     align-items: center;
 }
 
-form input {
+form input, form textarea, select {
     border-radius: 2px;
     border-width: 1px;
     border-style: solid;
@@ -37,6 +37,7 @@ form button {
     cursor: pointer;
     transition: 0.2s;
 }
+
 
 form button:hover {
     background-color: #5c5c5c;
