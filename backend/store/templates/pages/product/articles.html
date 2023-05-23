@@ -22,6 +22,9 @@
     <div class="content">
         <div class="blockify">
             {% include 'components/profile/profile.html' %}
+            <a class="button add" href="">
+                <img src="{% static 'svgs/add.svg' %}" alt="add"/>
+            </a>
             <div class="flexify">
                 <div class="articles">
                     {% for article in articles %}
@@ -36,8 +39,18 @@
                                 <div class="description">
                                     <p>{{ article.description }}</p>
                                 </div>
+                                <div class="reservation">
+                                    <p>Reservieren</p>
+                                </div>
+                                <div class="buttons">
+                                    <div class="button modify">
+                                        <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
+                                    </div>
+                                    <div class="button delete">
+                                        <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
                     {% endfor %}
                 </div>

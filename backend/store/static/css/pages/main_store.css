@@ -16,6 +16,41 @@
     width: 100%;
 }
 
+.content .blockify .add {
+    background-color: #009543;
+}
+
+.content .blockify .modify {
+    background-color: gray;
+}
+
+.content .blockify .delete {
+    background-color: #9d0300;
+}
+
+.content .blockify .button {
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    width: 32px;
+    padding: 6px;
+    margin: 12px;
+    border-radius: 2px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.content .blockify .button:hover {
+    transform: scale(1.1);
+}
+
+.content .blockify .articles .cell .card .button {
+    margin: 0 6px;
+}
+
+.content .blockify .button img {
+    filter: invert();
+}
+
 .content .blockify .flexify {
     display: flex;
     justify-content: center;
@@ -46,11 +81,13 @@
     border-width: 1px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 28px 1fr 128px;
+    grid-template-rows: 28px 1fr 128px 44px 44px;
     grid-template-areas:
         "title"
         "."
-        "description";
+        "description"
+        "reservation"
+        "buttons";
     grid-gap: 12px;
 }
 
@@ -69,6 +106,28 @@
 .content .articles .cell .card .description {
     grid-area: description;
     color: gray;
+}
+
+.content .articles .cell .card .reservation {
+    display: flex;
+    grid-area: reservation;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffae00;
+    color: white;
+    border-radius: 2px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.content .articles .cell .card .reservation:hover {
+        background-color: #ff8800;
+}
+
+.content .articles .cell .card .buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: right;
 }
 
 @media screen and (max-width: 1304px) {
