@@ -96,7 +96,7 @@
 }
 
 .content .articles .cell .card-noperm {
-        grid-template-rows: 28px 1fr 128px 44px 24px;
+    grid-template-rows: 28px 1fr 128px 44px 24px;
     grid-template-areas:
         "title"
         "."
@@ -175,12 +175,44 @@
     font-size: 1.5rem;
 }
 
+.content .form-card .buttons {
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "cancel delete";
+}
+
 .content .form-card .delete-button {
+    grid-area: delete;
     background-color: #9d0300;
+    margin: 12px 0;
+    font-size: 1.2rem;
 }
 
 .content .form-card .delete-button:hover {
     background-color: #730200;
+}
+
+.content .form-card .cancel-button {
+    grid-area: cancel;
+    background-color: gray;
+    height: 48px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 2px;
+    margin: 12px 0;
+    font-size: 1.2rem;
+}
+
+.content .form-card .cancel-button:hover {
+    background-color: #757575;
 }
 
 @media screen and (max-width: 1304px) {

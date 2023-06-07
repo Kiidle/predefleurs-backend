@@ -27,7 +27,10 @@
                     <p class="title">Bist du dir sicher?</p>
                     <form action="{% url 'article_delete_confirmed' article.id %}" method="post">
                         {% csrf_token %}
-                        <button class="delete-button" type="submit">Bestätigen</button>
+                        <div class="buttons">
+                            <a class="cancel-button" href="{% url 'articles' %}">Abbrechen</a>
+                            <button class="delete-button" type="submit">Bestätigen</button>
+                        </div>
                     </form>
                 </div>
             </div>

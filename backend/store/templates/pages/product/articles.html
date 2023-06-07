@@ -33,65 +33,93 @@
                 <div class="articles">
                     {% for article in articles %}
                         <div class="cell">
-                            {% for group in request.user.groups.all %}
-                                {% if group.name == 'admin' or group.name == 'staff' %}
-                                    <div class="card card-perm">
-                                        <div class="title">
-                                            <p>{{ article.title }}</p>
-                                        </div>
-                                        <div class="image">
-                                            <img src="{{ article.get_image_url }}" alt="{{ article.get_image_url }}"/>
-                                        </div>
-                                        <div class="description">
-                                            <p>{{ article.description }}</p>
-                                        </div>
-                                        {% if request.user.is_authenticated %}
-                                            <div class="reservation">
-                                                <p>Reservieren</p>
+                            {% if request.user.is_authenticated %}
+                                {% for group in request.user.groups.all %}
+                                    {% if group.name == 'admin' or group.name == 'staff' %}
+                                        <div class="card card-perm">
+                                            <div class="title">
+                                                <p>{{ article.title }}</p>
                                             </div>
-                                        {% else %}
-                                            <a href="{% url 'login' %}" class="reservation">
-                                                <p>Reservieren</p>
-                                            </a>
-                                        {% endif %}
-                                        <div class="buttons">
-                                            <a href="{% url 'article_update' article.id %}" class="button modify">
-                                                <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
-                                            </a>
-                                            <a href="{% url 'article_delete' article.id %}" class="button delete">
-                                                <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
-                                            </a>
-                                        </div>
-                                        <div class="author">
-                                            <p>{{ article.author.first_name }} {{ article.author.last_name }}</p>
-                                        </div>
-                                    </div>
-                                {% else %}
-                                    <div class="card card-noperm">
-                                        <div class="title">
-                                            <p>{{ article.title }}</p>
-                                        </div>
-                                        <div class="image">
-                                            <img src="{{ article.get_image_url }}" alt="{{ article.get_image_url }}"/>
-                                        </div>
-                                        <div class="description">
-                                            <p>{{ article.description }}</p>
-                                        </div>
-                                        {% if request.user.is_authenticated %}
-                                            <div class="reservation">
-                                                <p>Reservieren</p>
+                                            <div class="image">
+                                                <img src="{{ article.get_image_url }}"
+                                                     alt="{{ article.get_image_url }}"/>
                                             </div>
-                                        {% else %}
-                                            <a href="{% url 'login' %}" class="reservation">
-                                                <p>Reservieren</p>
-                                            </a>
-                                        {% endif %}
-                                        <div class="author">
-                                            <p>{{ article.author.first_name }} {{ article.author.last_name }}</p>
+                                            <div class="description">
+                                                <p>{{ article.description }}</p>
+                                            </div>
+                                            {% if request.user.is_authenticated %}
+                                                <div class="reservation">
+                                                    <p>Reservieren</p>
+                                                </div>
+                                            {% else %}
+                                                <a href="{% url 'login' %}" class="reservation">
+                                                    <p>Reservieren</p>
+                                                </a>
+                                            {% endif %}
+                                            <div class="buttons">
+                                                <a href="{% url 'article_update' article.id %}" class="button modify">
+                                                    <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
+                                                </a>
+                                                <a href="{% url 'article_delete' article.id %}" class="button delete">
+                                                    <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
+                                                </a>
+                                            </div>
+                                            <div class="author">
+                                                <p>{{ article.author.first_name }} {{ article.author.last_name }}</p>
+                                            </div>
                                         </div>
+                                    {% else %}
+                                        <div class="card card-noperm">
+                                            <div class="title">
+                                                <p>{{ article.title }}</p>
+                                            </div>
+                                            <div class="image">
+                                                <img src="{{ article.get_image_url }}"
+                                                     alt="{{ article.get_image_url }}"/>
+                                            </div>
+                                            <div class="description">
+                                                <p>{{ article.description }}</p>
+                                            </div>
+                                            {% if request.user.is_authenticated %}
+                                                <div class="reservation">
+                                                    <p>Reservieren</p>
+                                                </div>
+                                            {% else %}
+                                                <a href="{% url 'login' %}" class="reservation">
+                                                    <p>Reservieren</p>
+                                                </a>
+                                            {% endif %}
+                                            <div class="author">
+                                                <p>{{ article.author.first_name }} {{ article.author.last_name }}</p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <div class="card card-noperm">
+                                    <div class="title">
+                                        <p>{{ article.title }}</p>
                                     </div>
-                                {% endif %}
-                            {% endfor %}
+                                    <div class="image">
+                                        <img src="{{ article.get_image_url }}" alt="{{ article.get_image_url }}"/>
+                                    </div>
+                                    <div class="description">
+                                        <p>{{ article.description }}</p>
+                                    </div>
+                                    {% if request.user.is_authenticated %}
+                                        <div class="reservation">
+                                            <p>Reservieren</p>
+                                        </div>
+                                    {% else %}
+                                        <a href="{% url 'login' %}" class="reservation">
+                                            <p>Reservieren</p>
+                                        </a>
+                                    {% endif %}
+                                    <div class="author">
+                                        <p>{{ article.author.first_name }} {{ article.author.last_name }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
