@@ -28,75 +28,60 @@
                     </div>
                 </a>
             {% endif %}
-            {% if page == "admin" %}
-                <div class="section">
-                    <div class="current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/group_filled.svg' %}" alt="group"/>
+            {% for group in request.user.groups.all %}
+                {% if group.name == 'admin' or group.name == 'developer' or group.name == 'staff' %}
+                    {% if page == "cloud" %}
+                        <div class="section">
+                            <div class="current">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                                </div>
+                                <div class="text">
+                                    <p>Cloud</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text">
-                            <p>Benutzer</p>
+                    {% else %}
+                        <div class="section">
+                            <div class="not-current">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                                </div>
+                                <div class="text">
+                                    <p>Cloud</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/group_filled.svg' %}" alt="group"/>
-                        </div>
-                        <div class="text">
-                            <p>Benutzer</p>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-            {% if page == "cloud" %}
-                <div class="section">
-                    <div class="current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
-                        </div>
-                        <div class="text">
-                            <p>Cloud</p>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
-                        </div>
-                        <div class="text">
-                            <p>Cloud</p>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-            {% if page == "management" %}
-                <div class="section">
-                    <div class="current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
-                        </div>
-                        <div class="text">
-                            <p>Management</p>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
-                        </div>
-                        <div class="text">
-                            <p>Management</p>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% for group in request.user.groups.all %}
+                {% if group.name == 'admin' or group.name == 'developer' or group.name == 'staff' %}
+                    {% if page == "management" %}
+                        <a a href="{% url 'board' %}" class="section">
+                            <div class="current">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
+                                </div>
+                                <div class="text">
+                                    <p>Management</p>
+                                </div>
+                            </div>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'board' %}" class="section">
+                            <div class="not-current">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
+                                </div>
+                                <div class="text">
+                                    <p>Management</p>
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
             {% if page == "product" %}
                 <a href="{% url 'articles' %}" class="section">
                     <div class="current">
@@ -120,51 +105,55 @@
                     </div>
                 </a>
             {% endif %}
-            {% if page == "forum" %}
-                <div class="section">
-                    <div class="current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/forum_filled.svg' %}" alt="forum"/>
-                        </div>
-                        <div class="text">
-                            <p>Forum</p>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/forum_filled.svg' %}" alt="forum"/>
-                        </div>
-                        <div class="text">
-                            <p>Forum</p>
+            {% if request.user.is_authenticated %}
+                {% if page == "forum" %}
+                    <div class="section">
+                        <div class="current">
+                            <div class="icon">
+                                <img src="{% static 'svgs/forum_filled.svg' %}" alt="forum"/>
+                            </div>
+                            <div class="text">
+                                <p>Forum</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="section">
+                        <div class="not-current">
+                            <div class="icon">
+                                <img src="{% static 'svgs/forum_filled.svg' %}" alt="forum"/>
+                            </div>
+                            <div class="text">
+                                <p>Forum</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             {% endif %}
-            {% if page == "media" %}
-                <div class="section">
-                    <div class="current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/social_filled.svg' %}" alt="social"/>
-                        </div>
-                        <div class="text">
-                            <p>Medien</p>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/social_filled.svg' %}" alt="social"/>
-                        </div>
-                        <div class="text">
-                            <p>Medien</p>
+            {% if request.user.is_authenticated %}
+                {% if page == "media" %}
+                    <div class="section">
+                        <div class="current">
+                            <div class="icon">
+                                <img src="{% static 'svgs/social_filled.svg' %}" alt="social"/>
+                            </div>
+                            <div class="text">
+                                <p>Medien</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="section">
+                        <div class="not-current">
+                            <div class="icon">
+                                <img src="{% static 'svgs/social_filled.svg' %}" alt="social"/>
+                            </div>
+                            <div class="text">
+                                <p>Medien</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             {% endif %}
             <div class="section">
                 <div class="not-current">

@@ -1,0 +1,123 @@
+.content {
+    display: flex;
+    width: 100%;
+    padding: 12px;
+    overflow-y: scroll;
+    height: calc(100vh - 75px);
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.content .blockify {
+    display: block;
+    width: 100%;
+}
+
+.content .blockify .flexify {
+    display: flex;
+    justify-content: center;
+}
+
+.board {
+    background-color: white;
+    max-width: 1024px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "todo in-progress done";
+    padding: 12px;
+    grid-gap: 12px;
+}
+
+.board .column {
+    background-color: #eeeeee;
+    padding: 12px;
+    border-radius: 2px;
+}
+
+.board .column .header {
+    font-weight: bold;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    margin-bottom: 12px;
+}
+
+.board .todo {
+    grid-area: todo;
+}
+
+.board .in-progress {
+    grid-area: in-progress;
+}
+
+.board .done {
+    grid-area: done;
+}
+
+.taskcard {
+    background-color: white;
+    padding: 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    cursor: pointer;
+    margin: 12px 0;
+}
+
+.taskcard-emergency {
+    background-color: #ff9d8f;
+    padding: 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    cursor: pointer;
+    margin: 12px 0;
+}
+
+.taskcard p, .taskcard-emergency p {
+    margin: 12px 0;
+}
+
+.taskcard .title, .taskcard-emergency .title {
+    font-weight: bold;
+}
+
+.taskcard .description {
+    color: gray;
+}
+
+.taskcard-emergency .description {
+    color: #9d0300;
+}
+
+.taskcard .priority, .taskcard-emergency .priority {
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    width: 76px;
+    margin: auto 0 auto auto;
+}
+
+.taskcard-emergency .priority-emergency {
+    background-color: #9d0300;
+}
+
+.taskcard .priority-high {
+    background-color: red;
+}
+
+.taskcard .priority-medium {
+    background-color: #ffab00;
+}
+
+.taskcard .priority-low {
+    background-color: #009543;
+}
