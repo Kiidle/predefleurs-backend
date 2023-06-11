@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="sidebar">
+    <div class="flexify">
+        <div class="grid">
+            {% if page == 'board' %}
+                <a href="{% url 'board' %}" class="section">
+                    <div class="current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/taskboard.svg' %}" alt="products"/>
+                        </div>
+                        <div class="text">
+                            <p>Taskboard</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'board' %}" class="section">
+                    <div class="not-current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/taskboard.svg' %}" alt="products"/>
+                        </div>
+                        <div class="text">
+                            <p>Taskboard</p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

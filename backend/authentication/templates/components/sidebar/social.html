@@ -28,52 +28,33 @@
                     </div>
                 </a>
             {% endif %}
-            {% if page == "admin" %}
-                <div class="section">
-                    <div class="current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/group_filled.svg' %}" alt="group"/>
+            {% for group in request.user.groups.all %}
+                {% if group.name == 'admin' or group.name == 'developer' or group.name == 'staff' %}
+                    {% if page == "cloud" %}
+                        <div class="section">
+                            <div class="current">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                                </div>
+                                <div class="text">
+                                    <p>Cloud</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text">
-                            <p>Benutzer</p>
+                    {% else %}
+                        <div class="section">
+                            <div class="not-current">
+                                <div class="icon">
+                                    <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
+                                </div>
+                                <div class="text">
+                                    <p>Cloud</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/group_filled.svg' %}" alt="group"/>
-                        </div>
-                        <div class="text">
-                            <p>Benutzer</p>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-            {% if page == "cloud" %}
-                <div class="section">
-                    <div class="current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
-                        </div>
-                        <div class="text">
-                            <p>Cloud</p>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/cloud_filled.svg' %}" alt="cloud"/>
-                        </div>
-                        <div class="text">
-                            <p>Cloud</p>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
             {% if page == "management" %}
                 <div class="section">
                     <div class="current">

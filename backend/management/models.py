@@ -6,13 +6,14 @@ from datetime import datetime, time
 
 User = get_user_model()
 
+
 class Task(models.Model):
-    class Status(models.TextField):
+    class Status(models.TextChoices):
         TODO = "Todo", "Todo"
         IN_PROGRESS = "In Bearbeitung", "In Bearbeitung"
         DONE = "Fertig", "Fertig"
 
-    class Priority(models.TextField):
+    class Priority(models.TextChoices):
         LOW = "Niedrig", "Niedrig"
         MEDIUM = "Mittel", "Mittel"
         HIGH = "Hoch", "Hoch"
@@ -20,5 +21,10 @@ class Task(models.Model):
 
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=200)
-    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="created_tasks")
-    assigned = models.OneToOneField(User, null=True, on_delete=models.SET_NULL, related_name="tasks")
+    priority = models.CharField(max_length=20, choices=Priority.choices, default=Priority.LOW)
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.TODO)
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name="created_tasks")
+    assigned = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name="tasks")
+
+    def __str__(self):
+        return f"{self.title} ({self.status}) | Priorität: {self.priority}"

@@ -20,7 +20,7 @@ User = get_user_model()
 
 class ArticlesView(generic.ListView):
     model = Article
-    fields = ['titlte', 'description', 'author']
+    fields = ['title', 'description', 'author']
     template_name = "pages/product/articles.html"
 
     def get_context_data(self, **kwargs):

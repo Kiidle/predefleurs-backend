@@ -18,7 +18,7 @@
 {% include 'components/header/dashboard.html' with title="Produkte" %}
 <main>
     {% include 'components/sidebar/sidebar.html' with page="product" %}
-    {% include 'components/subsidebar/subsidebar.html' with page="product" %}
+    {% include 'components/subsidebar/subsidebar_product.html' with page="product" %}
     <div class="content">
         <div class="blockify">
             {% include 'components/profile/profile.html' %}
@@ -43,4 +43,5 @@
         </div>
     </div>
 </main>
+{% include 'components/footer.html' %}
 </body>

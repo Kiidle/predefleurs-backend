@@ -111,14 +111,14 @@
                     <div class="cell">
                         {% for group in request.user.groups.all %}
                             {% if group.name == 'admin' or group.name == 'developer' or group.name == 'staff' %}
-                                <div class="card">
+                                <a href="{% url 'board' %}" class="card">
                                     <div class="icon">
                                         <img src="{% static 'svgs/management_filled.svg' %}" alt="management"/>
                                     </div>
                                     <div class="title">
                                         <p>Management</p>
                                     </div>
-                                </div>
+                                </a>
                             {% else %}
                                 <div class="card-disabled">
                                     <div class="icon">
