@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from management.models import Task
@@ -46,3 +47,16 @@ class BoardView(generic.ListView):
         context["tasks"] = super().get_queryset()
 
         return context
+
+class CreateTaskView(generic.CreateView):
+    model = Task
+    fields = ['title', 'description', 'priority', 'status', 'assigned']
+    template_name = "pages/task/form_task.html"
+
+    def get_success_url(self):
+        return reverse_lazy('board')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        return super().form_valid(form)

@@ -20,6 +20,48 @@
     justify-content: center;
 }
 
+.content .blockify .add {
+    background-color: #009543;
+}
+
+.content .blockify .button {
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    width: 32px;
+    padding: 6px;
+    margin: 12px 0;
+    border-radius: 2px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.content .blockify .button:hover {
+    transform: scale(1.1);
+}
+
+.content .blockify .button img {
+    filter: invert();
+}
+
+.content .form-card {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-color: #d9d9d9;
+    border-style: solid;
+    border-width: 1px;
+    padding: 12px;
+}
+
+.content .form-card .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
 .board {
     background-color: white;
     max-width: 1024px;

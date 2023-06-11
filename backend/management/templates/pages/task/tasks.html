@@ -1,5 +1,4 @@
 {% load static %}
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/pages/main_board.css' %}">
-    <title>Artikeln</title>
+    <title>Taskboard</title>
 </head>
 <body>
 {% include 'components/header/dashboard.html' with title="Management" %}
@@ -22,6 +21,14 @@
     {% include 'components/subsidebar/subsidebar_management.html' with page="board" %}
     <div class="content">
         <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            {% for group in request.user.groups.all %}
+                {% if group.name == 'admin' or group.name == 'staff' %}
+                    <a class="button add" href="{% url 'task_create' %}">
+                        <img src="{% static 'svgs/add.svg' %}" alt="add"/>
+                    </a>
+                {% endif %}
+            {% endfor %}
             <div class="flexify">
                 <div class="board">
                     <div class="column todo">
