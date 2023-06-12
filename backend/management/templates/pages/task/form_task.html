@@ -24,11 +24,19 @@
             {% include 'components/profile/profile.html' %}
             <div class="flexify">
                 <div class="form-card">
-                    <p class="title">Aufgabe hinzufügen</p>
+                    {% if task.id %}
+                        <p class="title">{{ title }}</p>
+                    {% else %}
+                        <p class="title">Aufgabe hinzufügen</p>
+                    {% endif %}
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit">Hinzufügen</button>
+                        {% if task.id %}
+                            <button type="submit">Speichern</button>
+                        {% else %}
+                            <button type="submit">Hinzufügen</button>
+                        {% endif %}
                     </form>
                 </div>
             </div>

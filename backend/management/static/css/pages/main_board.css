@@ -219,6 +219,19 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
+.task-sidebar .user-card:hover {
+    background-color: #eeeeee;
+}
+
+.task-sidebar .change {
+    display: flex;
+    justify-content: right;
+    text-decoration: none;
+    color: gray;
+    font-weight: normal;
+    margin: 6px 0;
+}
+
 .task-sidebar .user-card .grid {
     display: grid;
     grid-template-columns: 36px 1fr;
@@ -239,6 +252,20 @@
     grid-area: profile-picture;
     filter: brightness(0) saturate(100%) invert(56%) sepia(4%) saturate(13%) hue-rotate(346deg) brightness(96%) contrast(87%);
     display: flex;
+}
+
+.task-sidebar .status {
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    width: 100px;
+    margin: auto auto auto 0;
+    background-color: #5e53ff;
 }
 
 .task-sidebar .buttons {

@@ -33,7 +33,7 @@
                 <div class="board">
                     <div class="column todo">
                         <div class="header">
-                            <p>Todo</p>
+                            <p>Offen</p>
                         </div>
                         {% for task in tasks_todo_emergency %}
                             <a href="{% url 'task' task.id %}">
@@ -198,7 +198,7 @@
                                         <p>{{ task.priority }}</p>
                                     </div>
                                     {% if task.assigned %}
-                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                        <p>{{ task.assigned.first_name }}{{ task.assigned.last_name }}</p>
                                     {% else %}
                                         <p>Nicht zugewiesen</p>
                                     {% endif %}

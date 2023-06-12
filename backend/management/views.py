@@ -48,9 +48,10 @@ class BoardView(generic.ListView):
 
         return context
 
+
 class CreateTaskView(generic.CreateView):
     model = Task
-    fields = ['title', 'description', 'priority', 'status', 'assigned']
+    fields = ['title', 'description', 'priority']
     template_name = "pages/task/form_task.html"
 
     def get_success_url(self):
@@ -61,8 +62,72 @@ class CreateTaskView(generic.CreateView):
 
         return super().form_valid(form)
 
+
 class TaskView(generic.UpdateView):
     model = Task
     fields = ['title', 'description', 'priority', 'status', 'author', 'assigned']
     template_name = "pages/task/task.html"
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        return super().form_valid(form)
+
+
+class UpdateTaskView(generic.UpdateView):
+    model = Task
+    fields = ['title', 'description', 'priority']
+    template_name = "pages/task/form_task.html"
+
+    def get_success_url(self):
+        return reverse_lazy('task', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Aufgabe bearbeiten"
+
+        return context
+
+
+class AssignTaskView(generic.UpdateView):
+    model = Task
+    fields = ['assigned']
+    template_name = "pages/task/form_task.html"
+
+    def get_success_url(self):
+        return reverse_lazy('task', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Aufgabe zuweisen"
+
+        return context
+
+
+class StatusTaskView(generic.UpdateView):
+    model = Task
+    fields = ['status']
+    template_name = "pages/task/form_task.html"
+
+    def get_success_url(self):
+        return reverse_lazy('task', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Aufgabe aktualisieren"
+
+        return context

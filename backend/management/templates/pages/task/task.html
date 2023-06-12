@@ -53,14 +53,16 @@
                     <p class="description">{{ task.description }}</p>
                 </div>
                 <div class="task-sidebar">
-                    <div class="buttons">
-                        <a href="" class="button modify">
-                            <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
-                        </a>
-                        <a href="" class="button delete">
-                            <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
-                        </a>
-                    </div>
+                    {% if task.author == request.user %}
+                        <div class="buttons">
+                            <a href="{% url 'task_update' task.id %}" class="button modify">
+                                <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
+                            </a>
+                            <a href="" class="button delete">
+                                <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
+                            </a>
+                        </div>
+                    {% endif %}
                     <div class="attribute">
                         Autor
                     </div>
@@ -87,6 +89,14 @@
                             {% endif %}
                         </div>
                     </div>
+                    <a class="change" href="{% url 'task_assign' task.id %}">Ändern</a>
+                    <div class="attribute">
+                        <p>Status</p>
+                    </div>
+                    <div class="status">
+                        {{ task.status }}
+                    </div>
+                    <a class="change" href="{% url 'task_status' task.id %}">Ändern</a>
                 </div>
             </div>
         </div>
