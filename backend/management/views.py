@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -131,3 +131,21 @@ class StatusTaskView(generic.UpdateView):
         context["title"] = "Aufgabe aktualisieren"
 
         return context
+
+class DeleteTaskView(generic.DetailView):
+    model = Task
+    fields = ['title']
+    template_name = 'pages/task/delete_task.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+def delete_task(request, pk):
+    task = Task.objects.get(pk=pk)
+
+    if request.method == "POST":
+        task.delete()
+        return redirect("board")
+
+    return (request, "/management", {"task": task})

@@ -58,7 +58,7 @@
                             <a href="{% url 'task_update' task.id %}" class="button modify">
                                 <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
                             </a>
-                            <a href="" class="button delete">
+                            <a href="{% url 'task_delete' task.id %}" class="button delete">
                                 <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
                             </a>
                         </div>
