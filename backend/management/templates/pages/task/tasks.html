@@ -36,60 +36,68 @@
                             <p>Todo</p>
                         </div>
                         {% for task in tasks_todo_emergency %}
-                            <div class="taskcard-emergency">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-emergency">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard-emergency">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-emergency">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_todo_high %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-high">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-high">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_todo_medium %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-medium">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-medium">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_todo_low %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-low">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-low">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                     <div class="column in-progress">
@@ -97,60 +105,68 @@
                             <p>In Bearbeitung</p>
                         </div>
                         {% for task in tasks_inprogress_emergency %}
-                            <div class="taskcard-emergency">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-emergency">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard-emergency">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-emergency">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_inprogress_high %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-high">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-high">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_inprogress_medium %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-medium">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-medium">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_inprogress_low %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-low">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-low">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                     <div class="column done">
@@ -158,60 +174,68 @@
                             <p>Fertig</p>
                         </div>
                         {% for task in tasks_done_emergency %}
-                            <div class="taskcard-emergency">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-emergency">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard-emergency">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-emergency">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_done_high %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-high">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-high">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_done_medium %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-medium">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-medium">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                         {% for task in tasks_done_low %}
-                            <div class="taskcard">
-                                <p class="title">{{ task.title }}</p>
-                                <p class="description">{{ task.description }}</p>
-                                <div class="priority priority-low">
-                                    <p>{{ task.priority }}</p>
+                            <a href="{% url 'task' task.id %}">
+                                <div class="taskcard">
+                                    <p class="title"><span class="id">{{ task.id }}</span> {{ task.title }}</p>
+                                    <p class="description">{{ task.description }}</p>
+                                    <div class="priority priority-low">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                    {% if task.assigned %}
+                                        <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
+                                    {% else %}
+                                        <p>Nicht zugewiesen</p>
+                                    {% endif %}
                                 </div>
-                                {% if task.assigned %}
-                                    <p>@{{ task.assigned.username }}#{{ task.assigned.id }}</p>
-                                {% else %}
-                                    <p>Nicht zugewiesen</p>
-                                {% endif %}
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                 </div>

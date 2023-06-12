@@ -60,3 +60,9 @@ class CreateTaskView(generic.CreateView):
         form.instance.author = self.request.user
 
         return super().form_valid(form)
+
+class TaskView(generic.UpdateView):
+    model = Task
+    fields = ['title', 'description', 'priority', 'status', 'author', 'assigned']
+    template_name = "pages/task/task.html"
+
