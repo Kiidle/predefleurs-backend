@@ -20,6 +20,48 @@
     justify-content: center;
 }
 
+.content .blockify .add {
+    background-color: #009543;
+}
+
+.content .blockify .button {
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    width: 32px;
+    padding: 6px;
+    margin: 12px 0;
+    border-radius: 2px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.content .blockify .button:hover {
+    transform: scale(1.1);
+}
+
+.content .blockify .button img {
+    filter: invert();
+}
+
+.content .form-card {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-color: #d9d9d9;
+    border-style: solid;
+    border-width: 1px;
+    padding: 12px;
+}
+
+.content .form-card .title, .task-card .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
 .board {
     background-color: white;
     max-width: 1024px;
@@ -61,6 +103,11 @@
     grid-area: done;
 }
 
+.board a {
+    text-decoration: none;
+    color: black;
+}
+
 .taskcard {
     background-color: white;
     padding: 12px;
@@ -85,7 +132,14 @@
     font-weight: bold;
 }
 
-.taskcard .description {
+.taskcard .title .id, .taskcard-emergency .title .id {
+    font-weight: normal;
+    font-size: 0.75rem;
+    color: gray;
+    font-weight: bold;
+}
+
+.taskcard .description, .task-card .description {
     color: gray;
 }
 
@@ -93,7 +147,7 @@
     color: #9d0300;
 }
 
-.taskcard .priority, .taskcard-emergency .priority {
+.taskcard .priority, .taskcard-emergency .priority, .task-card .priority {
     color: white;
     font-weight: bold;
     font-size: 0.75rem;
@@ -103,21 +157,138 @@
     align-items: center;
     border-radius: 2px;
     width: 76px;
-    margin: auto 0 auto auto;
+    margin: auto auto auto 0;
 }
 
-.taskcard-emergency .priority-emergency {
+.taskcard-emergency .priority-emergency, .task-card .priority-emergency {
     background-color: #9d0300;
 }
 
-.taskcard .priority-high {
+.taskcard .priority-high, .task-card .priority-high {
     background-color: red;
 }
 
-.taskcard .priority-medium {
+.taskcard .priority-medium, .task-card .priority-medium {
     background-color: #ffab00;
 }
 
-.taskcard .priority-low {
+.taskcard .priority-low, .task-card .priority-low {
     background-color: #009543;
+}
+
+.task-card {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-color: #d9d9d9;
+    border-style: solid;
+    border-width: 1px;
+    padding: 12px;
+}
+
+.task-card .id {
+    margin: 0 12px 0 0;
+    font-size: 0.75rem;
+    color: gray;
+    font-weight: bold;
+}
+
+.task-sidebar {
+    width: 100%;
+    max-width: 250px;
+    background-color: white;
+    border-color: #d9d9d9;
+    border-style: solid;
+    border-width: 1px;
+    padding: 12px;
+}
+
+.task-sidebar .attribute {
+    color: gray;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.task-sidebar .user-card {
+    background-color: white;
+    border-color: #d9d9d9;
+    border-style: solid;
+    border-width: 1px;
+    padding: 12px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.task-sidebar .user-card:hover {
+    background-color: #eeeeee;
+}
+
+.task-sidebar .change {
+    display: flex;
+    justify-content: right;
+    text-decoration: none;
+    color: gray;
+    font-weight: normal;
+    margin: 6px 0;
+}
+
+.task-sidebar .user-card .grid {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    grid-template-rows: 36px;
+    grid-template-areas:
+        "profile-picture name";
+    grid-gap: 12px;
+}
+
+.task-sidebar .user-card .grid .name {
+    grid-area: name;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.task-sidebar .user-card .grid .profile-picture {
+    grid-area: profile-picture;
+    filter: brightness(0) saturate(100%) invert(56%) sepia(4%) saturate(13%) hue-rotate(346deg) brightness(96%) contrast(87%);
+    display: flex;
+}
+
+.task-sidebar .status {
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    width: 100px;
+    margin: auto auto auto 0;
+    background-color: #5e53ff;
+}
+
+.task-sidebar .buttons {
+    padding: 12px;
+    display: flex;
+    justify-content: right;
+}
+
+.task-sidebar .buttons .button {
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    width: 32px;
+    padding: 6px;
+    margin: 0 0 0 12px;
+    border-radius: 2px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.task-sidebar .buttons .modify {
+    background-color: gray;
+}
+
+.task-sidebar .buttons .delete {
+    background-color: #9d0300;
 }

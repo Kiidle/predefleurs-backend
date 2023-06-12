@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_board.css' %}">
+    <title>{{ task.title }}</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Management" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="management" %}
+    {% include 'components/subsidebar/subsidebar_management.html' with page="board" %}
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="flexify">
+                <div class="task-card">
+                    <div class="flexify">
+                        <p class="id">{{ task.id }}</p>
+                        {% if task.priority == "Sonderfall" %}
+                            <div class="priority priority-emergency">
+                                <p>{{ task.priority }}</p>
+                            </div>
+                        {% endif %}
+                        {% if task.priority == "Hoch" %}
+                            <div class="priority priority-high">
+                                <p>{{ task.priority }}</p>
+                            </div>
+                        {% endif %}
+                        {% if task.priority == "Mittel" %}
+                            <div class="priority priority-medium">
+                                <p>{{ task.priority }}</p>
+                            </div>
+                        {% endif %}
+                        {% if task.priority == "Niedrig" %}
+                            <div class="priority priority-low">
+                                <p>{{ task.priority }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <p class="title">
+                        {{ task.title }}
+                    </p>
+                    <p class="description">{{ task.description }}</p>
+                </div>
+                <div class="task-sidebar">
+                    {% if task.author == request.user %}
+                        <div class="buttons">
+                            <a href="{% url 'task_update' task.id %}" class="button modify">
+                                <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
+                            </a>
+                            <a href="{% url 'task_delete' task.id %}" class="button delete">
+                                <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div class="attribute">
+                        Autor
+                    </div>
+                    <div class="user-card">
+                        <div class="grid">
+                            <div class="profile-picture">
+                                <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                            </div>
+                            <p class="name">{{ task.author.first_name }} {{ task.author.last_name }}</p>
+                        </div>
+                    </div>
+                    <div class="attribute">
+                        <p>Zuständigkeit</p>
+                    </div>
+                    <div class="user-card">
+                        <div class="grid">
+                            {% if task.assigned %}
+                                <div class="profile-picture">
+                                    <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                                </div>
+                                <p class="name">{{ task.assigned.first_name }} {{ task.assigned.last_name }}</p>
+                            {% else %}
+                                <p class="name">Nicht zugewiesen</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <a class="change" href="{% url 'task_assign' task.id %}">Ändern</a>
+                    <div class="attribute">
+                        <p>Status</p>
+                    </div>
+                    <div class="status">
+                        {{ task.status }}
+                    </div>
+                    <a class="change" href="{% url 'task_status' task.id %}">Ändern</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>

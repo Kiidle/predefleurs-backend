@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import generic
 
 from management.models import Task
@@ -46,3 +47,105 @@ class BoardView(generic.ListView):
         context["tasks"] = super().get_queryset()
 
         return context
+
+
+class CreateTaskView(generic.CreateView):
+    model = Task
+    fields = ['title', 'description', 'priority']
+    template_name = "pages/task/form_task.html"
+
+    def get_success_url(self):
+        return reverse_lazy('board')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        return super().form_valid(form)
+
+
+class TaskView(generic.UpdateView):
+    model = Task
+    fields = ['title', 'description', 'priority', 'status', 'author', 'assigned']
+    template_name = "pages/task/task.html"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        return super().form_valid(form)
+
+
+class UpdateTaskView(generic.UpdateView):
+    model = Task
+    fields = ['title', 'description', 'priority']
+    template_name = "pages/task/form_task.html"
+
+    def get_success_url(self):
+        return reverse_lazy('task', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Aufgabe bearbeiten"
+
+        return context
+
+
+class AssignTaskView(generic.UpdateView):
+    model = Task
+    fields = ['assigned']
+    template_name = "pages/task/form_task.html"
+
+    def get_success_url(self):
+        return reverse_lazy('task', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Aufgabe zuweisen"
+
+        return context
+
+
+class StatusTaskView(generic.UpdateView):
+    model = Task
+    fields = ['status']
+    template_name = "pages/task/form_task.html"
+
+    def get_success_url(self):
+        return reverse_lazy('task', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Aufgabe aktualisieren"
+
+        return context
+
+class DeleteTaskView(generic.DetailView):
+    model = Task
+    fields = ['title']
+    template_name = 'pages/task/delete_task.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+def delete_task(request, pk):
+    task = Task.objects.get(pk=pk)
+
+    if request.method == "POST":
+        task.delete()
+        return redirect("board")
+
+    return (request, "/management", {"task": task})
