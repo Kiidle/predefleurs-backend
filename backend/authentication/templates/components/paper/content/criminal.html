@@ -1,3 +1,7 @@
+{% load static %}
+<div class="title">
+    {{ headline }}
+</div>
 <div class="textsection">
     <h2>Daten</h2>
     <p>Straftat: {{ criminal.crime }}</p>
@@ -30,3 +34,10 @@
         Strafregister gemäss unseren Anforderungen vorzulegen, um eine sorgfältige Prüfung Ihrer Bewerbung zu
         ermöglichen.</p>
 </div>
+{% if user == request.user %}
+    <div class="manipulate">
+        <a href="" class="edit">
+            <img src="{% static 'svgs/document_edit.svg' %}" alt="edit"/>
+        </a>
+    </div>
+{% endif %}

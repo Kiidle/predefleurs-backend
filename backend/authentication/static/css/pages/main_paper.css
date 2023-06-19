@@ -86,6 +86,36 @@
     align-items: center;
 }
 
+.content .blockify .flexify .paper .manipulate {
+    display: grid;
+    grid-template-columns: 1fr 36px;
+    grid-template-rows: 36px;
+    grid-template-areas:
+        ". edit";
+    position: absolute;
+    bottom: 48px;
+    width: 100%;
+    margin: 0 -48px;
+}
+
+.content .blockify .flexify .paper .manipulate .edit {
+    grid-area: edit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: invert(56%) sepia(50%) saturate(0%) hue-rotate(178deg) brightness(81%) contrast(80%);
+    transition: transform 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.content .blockify .flexify .paper .manipulate .edit:hover {
+    transform: scale(1.1);
+}
+
+.content .blockify .flexify .paper .manipulate img {
+    width: 100%;
+}
+
 .content .blockify .flexify .paper .title {
     display: flex;
     justify-content: center;
@@ -169,5 +199,9 @@
 
     .content .blockify .flexify .paper .textsection p {
         font-size: 1.2rem;
+    }
+
+    .content .blockify .flexify .paper .manipulate {
+        display: none;
     }
 }

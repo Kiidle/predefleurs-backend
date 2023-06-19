@@ -1,3 +1,7 @@
+{% load static %}
+<div class="title">
+    {{ headline }}
+</div>
 <div class="textsection">
     <h2>Daten</h2>
     <p>{{ user.first_name }} {{ user.last_name }}</p>
@@ -53,3 +57,10 @@
         Verfügung. Ihre Privatsphäre ist uns sehr wichtig, und wir achten darauf, alle geltenden Datenschutzbestimmungen
         einzuhalten.</p>
 </div>
+{% if user == request.user %}
+    <div class="manipulate">
+        <a href="" class="edit">
+            <img src="{% static 'svgs/document_edit.svg' %}" alt="edit"/>
+        </a>
+    </div>
+{% endif %}

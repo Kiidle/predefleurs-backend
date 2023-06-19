@@ -2,12 +2,8 @@
     {% if page == 'meta' or page == 'address' or page == 'certificate' or page == 'education' or page == 'health' or page == 'criminal' %}
         {% include 'components/paper/header/header.html' %}
     {% endif %}
-
-    <div class="title">
-        <p>{{ headline }}</p>
-    </div>
     {% if page == "legalnotice" %}
-        {% include 'components/paper/content/legalnotice.html' %}
+        {% include 'components/paper/content/legalnotice.html' with headline=headline  %}
     {% endif %}
     {% if page == "privacy" %}
         {% include 'components/paper/content/privacy.html' %}
