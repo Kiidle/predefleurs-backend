@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from django.contrib.auth.models import Group
-from .models import Data, Address
+from .models import Data, Address, Personal
 
 from django.db.models.signals import post_save
 
@@ -40,6 +40,7 @@ class SignUpView(generic.CreateView):
     def create_user_settings(sender, instance, created, **kwargs):
         if created:
             Data.objects.create(user=instance)
+            Personal.objects.create(user=instance)
             Address.objects.create(user=instance)
 
 def sign_in(request):
@@ -84,3 +85,61 @@ class PrivacyView(generic.ListView):
 class TermsView(generic.ListView):
     model = User
     template_name = "pages/laws/terms.html"
+
+
+class AccountView(generic.UpdateView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/account.html"
+
+    def get_success_url(self):
+        return reverse_lazy('settings', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class PersonalView(generic.ListView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/personal/personal.html"
+
+class MetaView(generic.DetailView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/personal/meta.html"
+
+class AddressView(generic.DetailView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/personal/address.html"
+
+class QualificationView(generic.DetailView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/personal/qualification/qualification.html"
+
+class WorkView(generic.ListView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/work/work.html"
+
+class CertificateView(generic.DetailView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/personal/qualification/certificate.html"
+
+class EducationView(generic.DetailView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/personal/qualification/education.html"
+
+class HealthView(generic.DetailView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/personal/health.html"
+
+class CriminalView(generic.DetailView):
+    model = User
+    fields = ['username', 'email']
+    template_name = "pages/settings/personal/criminal.html"

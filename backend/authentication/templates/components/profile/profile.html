@@ -3,9 +3,9 @@
     <div class="card">
         {% if request.user.is_authenticated %}
             <div class="grid">
-                <div class="profile-picture">
+                <a href="{% url 'settings' user.id %}" class="profile-picture">
                     <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
-                </div>
+                </a>
                 <div class="name">
                     <p>{{ request.user.first_name }} {{ request.user.last_name }}</p>
                 </div>

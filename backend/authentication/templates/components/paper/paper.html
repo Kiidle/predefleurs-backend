@@ -1,4 +1,8 @@
 <div class="paper">
+    {% if page == 'meta' or page == 'address' or page == 'certificate' or page == 'education' or page == 'health' or page == 'criminal' %}
+        {% include 'components/paper/header/header.html' %}
+    {% endif %}
+
     <div class="title">
         <p>{{ headline }}</p>
     </div>
@@ -10,5 +14,26 @@
     {% endif %}
     {% if page == "terms" %}
         {% include 'components/paper/content/terms.html' %}
+    {% endif %}
+    {% if page == "meta" %}
+        {% include 'components/paper/content/meta.html' %}
+    {% endif %}
+    {% if page == "address" %}
+        {% include 'components/paper/content/address.html' %}
+    {% endif %}
+    {% if page == "certificate" %}
+        {% include 'components/paper/content/certificate.html' %}
+    {% endif %}
+    {% if page == "education" %}
+        {% include 'components/paper/content/education.html' %}
+    {% endif %}
+    {% if page == "health" %}
+        {% include 'components/paper/content/health.html' %}
+    {% endif %}
+    {% if page == "criminal" %}
+        {% include 'components/paper/content/criminal.html' %}
+    {% endif %}
+    {% if page == 'meta' or page == 'address' or page == 'certificate' or page == 'education' or page == 'health' or page == 'criminal' %}
+        {% include 'components/paper/footer/footer.html' %}
     {% endif %}
 </div>

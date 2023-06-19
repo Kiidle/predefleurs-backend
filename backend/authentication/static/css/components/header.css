@@ -27,3 +27,9 @@ header h1 {
 .orange {
         background-color: #ffae00;
 }
+
+@media print {
+    header {
+        display: none;
+    }
+}

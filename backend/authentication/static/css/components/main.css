@@ -2,3 +2,11 @@ main {
     display: flex;
     margin: 0;
 }
+
+@media print {
+    main {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+}
