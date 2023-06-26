@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views
 from .views import SignUpView, HomeView, LegalNoticeView, PrivacyView, TermsView, AccountView, PersonalView, WorkView, \
-    MetaView, AddressView, QualificationView, CertificateView, EducationView, HealthView, CriminalView
+    MetaView, AddressView, QualificationView, CertificateView, EducationView, HealthView, CriminalView, SalaryView, \
+    AbsenceView, FeedbackView, ReprimantView
 
 urlpatterns = [
     path("signup/", SignUpView.as_view(), name="signup"),
@@ -16,9 +17,15 @@ urlpatterns = [
     path("settings/<int:pk>/personal/meta", MetaView.as_view(), name="settings_meta"),
     path("settings/<int:pk>/personal/address", AddressView.as_view(), name="settings_address"),
     path("settings/<int:pk>/personal/qualification", QualificationView.as_view(), name="settings_qualification"),
-    path("settings/<int:pk>/personal/qualification/certificates", CertificateView.as_view(), name="settings_certificate"),
+    path("settings/<int:pk>/personal/qualification/certificates", CertificateView.as_view(),
+         name="settings_certificate"),
     path("settings/<int:pk>/personal/qualification/educations", EducationView.as_view(), name="settings_education"),
     path("settings/<int:pk>/personal/health", HealthView.as_view(), name="settings_health"),
     path("settings/<int:pk>/personal/criminals", CriminalView.as_view(), name="settings_criminal"),
     path("settings/<int:pk>/work", WorkView.as_view(), name="settings_work"),
+    path("settings/<int:pk>/work/salaries", SalaryView.as_view(), name="settings_salary"),
+    path('salary/<int:salary_id>/', views.confirm_salary, name='salary_confirm'),
+    path("settings/<int:pk>/work/absences", AbsenceView.as_view(), name="settings_absence"),
+    path("settings/<int:pk>/work/feedback", FeedbackView.as_view(), name="settings_feedback"),
+    path("settings/<int:pk>/work/reprimant", ReprimantView.as_view(), name="settings_reprimant"),
 ]

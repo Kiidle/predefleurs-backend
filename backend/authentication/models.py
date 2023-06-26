@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser, Permission
 from django.db import models
+from django.shortcuts import redirect
+from django.template.defaultfilters import linebreaksbr
 from django.utils import timezone
 from django.contrib.auth.models import Group
 from datetime import datetime, time
@@ -116,6 +118,7 @@ class Address(models.Model):
     def __str__(self):
         return f"Address for {self.user.username}"
 
+
 class Certificate(models.Model):
     title = models.CharField(max_length=50)
     issuer = models.CharField(max_length=50)
@@ -144,6 +147,7 @@ class Certificate(models.Model):
     def __str__(self):
         return f"Certificate for {self.user.username} ({self.title})"
 
+
 class Education(models.Model):
     class Type(models.TextChoices):
         Apprenticeship = "Lehre", "lehre"
@@ -155,6 +159,7 @@ class Education(models.Model):
         HF = "Höhere Fachschule", "hf"
         FH = "Fachhochschule", "Fachhochschule"
         UNIVERSITY = "Universität", "Universität"
+
     start = models.DateField()
     end = models.DateField()
     type = models.CharField(max_length=50, choices=Type.choices)
@@ -173,6 +178,9 @@ class Education(models.Model):
         else:
             return ""
 
+    def format_grades(self):
+        return linebreaksbr(self.grades)
+
     def format_end(self):
         if self.end is not None:
             formatted_date = self.end.strftime("%d.%m.%Y")
@@ -180,9 +188,9 @@ class Education(models.Model):
         else:
             return ""
 
-
     def __str__(self):
         return f"Education for {self.user.username} ({self.title})"
+
 
 class Health(models.Model):
     allergies = models.CharField(max_length=50, null=True, blank=True)
@@ -192,10 +200,11 @@ class Health(models.Model):
     mental_health = models.CharField(max_length=50, null=True, blank=True)
     vaccines = models.TextField(max_length=500, null=True, blank=True)
     others = models.TextField(max_length=200, null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="health")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="health")
 
     def __str__(self):
         return f"Health data for {self.user.username}"
+
 
 class Criminal(models.Model):
     crime = models.CharField(max_length=50, null=True, blank=True)
@@ -215,6 +224,112 @@ class Criminal(models.Model):
 
     def __str__(self):
         return f"Criminal records for {self.user.username}"
+
+
+class Salary(models.Model):
+    amount = models.FloatField(null=True, blank=True)
+    date = models.DateTimeField()
+    confirmation = models.BooleanField(default=False)
+    recipient = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="salaries", null=True, blank=True)
+    beneficiary = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="payrolls", null=True, blank=True)
+
+    def format_date(self):
+        if self.date is not None:
+            formatted_date = timezone.localtime(self.date).strftime("%d.%m.%Y %H:%M Uhr")
+            return formatted_date
+        else:
+            return ""
+
+    def __str__(self):
+        return f"{self.amount} CHF wage payment for {self.recipient.username} by {self.beneficiary.username} at {self.date}"
+
+    class Meta:
+        ordering = ['-date']
+
+
+class Absence(models.Model):
+    class Type(models.TextChoices):
+        VACATION = "Urlaub", "urlaub"
+        SICK = "Krankheit", "krankheit"
+        OTHER = "Sonstiges", "sonstiges"
+
+    type = models.CharField(max_length=50, choices=Type.choices)
+    start = models.DateField()
+    end = models.DateField()
+    confirmation = models.BooleanField(default=False)
+    description = models.TextField(max_length=200, null=True, blank=True)
+    recipient = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="absences", null=True, blank=True)
+    beneficiary = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="approved_absences", null=True,
+                                    blank=True)
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="created_absences", null=True, blank=True)
+
+    def format_start(self):
+        if self.start is not None:
+            formatted_date = self.start.strftime("%d.%m.%Y")
+            return formatted_date
+        else:
+            return ""
+
+    def format_end(self):
+        if self.end is not None:
+            formatted_date = self.end.strftime("%d.%m.%Y")
+            return formatted_date
+        else:
+            return ""
+
+    def __str__(self):
+        return f"{self.type} ({self.start} to {self.end}) {self.recipient.username}"
+
+    class Meta:
+        ordering = ['-start']
+
+
+class Feedback(models.Model):
+    date = models.DateField()
+    appearance = models.TextField(max_length=200)
+    teamwork = models.TextField(max_length=200)
+    helpfulness = models.TextField(max_length=200)
+    politeness = models.TextField(max_length=200)
+    communication = models.TextField(max_length=200)
+    work_quality = models.TextField(max_length=200)
+    work_organisation = models.TextField(max_length=200)
+    knowledge = models.TextField(max_length=200)
+    goals = models.TextField(max_length=200)
+    grade = models.FloatField()
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="feedbacks", null=True, blank=True)
+    evaluator = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="evaluated_feedbacks", null=True, blank=True)
+
+    def format_date(self):
+        if self.date is not None:
+            formatted_date = self.date.strftime("%d.%m.%Y")
+            return formatted_date
+        else:
+            return ""
+
+    def format_goals(self):
+        return linebreaksbr(self.goals)
+
+    def __str__(self):
+        return f"Feedback for {self.user}"
+
+    class Meta:
+        ordering = ['-date']
+
+class Reprimant(models.Model):
+    date = models.DateField()
+    reason = models.TextField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="reprimants", null=True, blank=True)
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="created_reprimants", null=True, blank=True)
+
+    def format_date(self):
+        if self.date is not None:
+            formatted_date = self.date.strftime("%d.%m.%Y")
+            return formatted_date
+        else:
+            return ""
+
+    class Meta:
+        ordering = ['-date']
 
 class Warn(models.Model):
     class Reasons(models.TextChoices):

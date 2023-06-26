@@ -3,10 +3,10 @@
     {{ headline }}
 </div>
 <div class="textsection">
-    <h2>{{ education.type }}</h2>
     <p>{{ education.user.first_name }} {{ education.user.last_name }}</p>
 </div>
 <div class="textsection">
+    <h2>{{ education.type }}</h2>
     <p>{{ education.title }} ({{ education.specialization }})</p>
     <p>{{ education.institution }}</p>
 </div>
@@ -24,12 +24,5 @@
 <div class="textsection">
     <h2>Noten</h2>
     <p>Abschlussnote: {{ education.final_grade }}</p>
-    <p>{{ education.grades }}</p>
+    <p>{{ education.format_grades }}</p>
 </div>
-{% if user == request.user %}
-    <div class="manipulate">
-        <a href="" class="edit">
-            <img src="{% static 'svgs/document_edit.svg' %}" alt="edit"/>
-        </a>
-    </div>
-{% endif %}

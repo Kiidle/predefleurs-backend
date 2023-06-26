@@ -31,7 +31,7 @@
                             <p>Arbeitsakten</p>
                         </div>
                     </a>
-                    <a href="" class="file">
+                    <a href="{% url 'settings_salary' user.id %}" class="file">
                         <div class="icon">
                             <img src="{% static 'svgs/document_salary.svg' %}"/>
                         </div>
@@ -39,7 +39,7 @@
                             <p>Gehalts- und Vergütungsakten</p>
                         </div>
                     </a>
-                    <a href="" class="file">
+                    <a href="{% url 'settings_absence' user.id %}" class="file">
                         <div class="icon">
                             <img src="{% static 'svgs/document.svg' %}"/>
                         </div>
@@ -47,7 +47,7 @@
                             <p>Krankheits- und Urlaubsakten</p>
                         </div>
                     </a>
-                    <a href="" class="file">
+                    <a href="{% url 'settings_feedback' user.id %}" class="file">
                         <div class="icon">
                             <img src="{% static 'svgs/document_rapporte.svg' %}"/>
                         </div>
@@ -55,7 +55,7 @@
                             <p>Leistungsbeurteilungsakten</p>
                         </div>
                     </a>
-                    <a href="" class="file">
+                    <a href="{% url 'settings_reprimant' user.id %}" class="file">
                         <div class="icon">
                             <img src="{% static 'svgs/document.svg' %}"/>
                         </div>
