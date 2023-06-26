@@ -18,3 +18,13 @@ html, body {
     color: #9d0300;
     font-weight: bold;
 }
+
+@media print {
+    body {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: white;
+    }
+}

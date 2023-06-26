@@ -71,3 +71,9 @@
 .profile .card .grid .role .admin {
     color: #9d0300
 }
+
+@media print {
+    .profile {
+        display: none;
+    }
+}
