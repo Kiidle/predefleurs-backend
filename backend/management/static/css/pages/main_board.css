@@ -133,7 +133,6 @@
 }
 
 .taskcard .title .id, .taskcard-emergency .title .id {
-    font-weight: normal;
     font-size: 0.75rem;
     color: gray;
     font-weight: bold;
