@@ -25,6 +25,8 @@
                         <div class="flexify">
                             {% include 'components/paper/paper.html' with page="reprimant" headline="Disziplinarakte" %}
                         </div>
+                    {% empty %}
+                        <p class="access-denied">Ihre Akten sind leer</p>
                     {% endfor %}
                 {% endif %}
             {% endfor %}
