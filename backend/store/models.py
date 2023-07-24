@@ -30,10 +30,16 @@ class Reservation(models.Model):
         READY = "Abholbereit", "Abholbereit"
         DONE = "Abgeschlossen", "Abgeschlossen"
 
-    article = models.OneToOneField(Article, on_delete=models.CASCADE, related_name="reservations")
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="reservations")
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="reservations")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reservations")
     start_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=Status.choices, default=Status.OPEN)
 
+    def format_date(self):
+        return self.start_date.strftime("%d.%m.%Y %H:%M Uhr")
+
     def __str__(self):
         return f"{self.user.username} reserverd {self.article.title} on {self.start_date}"
+
+    class Meta:
+        ordering = ['-start_date']
