@@ -48,9 +48,9 @@
                                                 <p>{{ article.description }}</p>
                                             </div>
                                             {% if request.user.is_authenticated %}
-                                                <div class="reservation">
+                                                <a href="{% url 'create_reservation' article.id %}" class="reservation">
                                                     <p>Reservieren</p>
-                                                </div>
+                                                </a>
                                             {% else %}
                                                 <a href="{% url 'login' %}" class="reservation">
                                                     <p>Reservieren</p>
@@ -81,9 +81,9 @@
                                                 <p>{{ article.description }}</p>
                                             </div>
                                             {% if request.user.is_authenticated %}
-                                                <div class="reservation">
+                                                <a href="{% url 'create_reservation' article.id %}" class="reservation">
                                                     <p>Reservieren</p>
-                                                </div>
+                                                </a>
                                             {% else %}
                                                 <a href="{% url 'login' %}" class="reservation">
                                                     <p>Reservieren</p>
@@ -107,9 +107,9 @@
                                         <p>{{ article.description }}</p>
                                     </div>
                                     {% if request.user.is_authenticated %}
-                                        <div class="reservation">
+                                        <a href="{% url 'create_reservation' article.id %}" class="reservation">
                                             <p>Reservieren</p>
-                                        </div>
+                                        </a>
                                     {% else %}
                                         <a href="{% url 'login' %}" class="reservation">
                                             <p>Reservieren</p>

@@ -56,6 +56,144 @@
     justify-content: center;
 }
 
+.content .blockify .legende {
+    font-size: 0.7rem;
+    color: gray;
+    max-width: 1024px;
+    margin: 8px auto;
+}
+
+.content .blockify .tab {
+    width: 1024px;
+    height: 32px;
+    margin: 12px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "tab1 tab2";
+    background-color: #eeeeee;
+    color: gray;
+}
+
+.content .blockify .tab a {
+    text-decoration: none;
+    color: gray;
+}
+
+.content .blockify .tab1:hover {
+    background-color: #dedede;
+}
+
+.content .blockify .tab .tab1 {
+    grid-area: tab1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right-color: #d9d9d9;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+.content .blockify .tab .current {
+    border-bottom-color: #ffae00;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+.content .blockify .tab2:hover {
+    background-color: #dedede;
+}
+
+.content .blockify .tab .tab2 {
+    grid-area: tab2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left-color: #d9d9d9;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+.content .blockify .reservation-card {
+    max-width: 1006px;
+    height: 46px;
+    margin: 2px auto;
+    background-color: white;
+    border-color: #d9d9d9;
+    border-width: 1px;
+    border-style: solid;
+    display: grid;
+    grid-template-columns: 1fr 1fr 128px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "title . status"
+        "user . date";
+    padding: 8px;
+    cursor: pointer;
+}
+
+.content .blockify .reservation-card:hover {
+    background-color: #eeeeee;
+}
+
+.content .blockify .reservation-card .title {
+    font-weight: bold;
+    grid-area: title;
+    display: flex;
+    align-items: center;
+}
+
+.content .blockify .reservation-card .user {
+    grid-area: user;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+.content .blockify .reservation-card .date {
+    grid-area: date;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    color: gray;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+.content .blockify .reservation-card .status {
+    grid-area: status;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.content .blockify .reservation-card .open {
+    background-color: #ffae00;
+}
+
+.content .blockify .reservation-card .approved {
+    background-color: #009543;
+}
+
+.content .blockify .reservation-card .denied {
+    background-color: #9d0300;
+}
+
+.content .blockify .reservation-card .ready {
+    background-color: #4957ff;
+}
+
+.content .blockify .reservation-card .done {
+    background-color: gray;
+}
+
+
 .content .articles {
     max-width: 1024px;
     width: 100%;
