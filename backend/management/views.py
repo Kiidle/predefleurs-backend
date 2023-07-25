@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
@@ -113,6 +114,12 @@ class AssignTaskView(generic.UpdateView):
 
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        task = self.get_object()
+        if request.user != task.author:
+            return HttpResponseRedirect(reverse_lazy('task', kwargs={'pk': task.pk}))
+        return super().dispatch(request, *args, **kwargs)
+
 
 class StatusTaskView(generic.UpdateView):
     model = Task
@@ -131,6 +138,12 @@ class StatusTaskView(generic.UpdateView):
         context["title"] = "Aufgabe aktualisieren"
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        task = self.get_object()
+        if request.user != task.author and request.user != task.assigned:
+            return HttpResponseRedirect(reverse_lazy('task', kwargs={'pk': task.pk}))
+        return super().dispatch(request, *args, **kwargs)
 
 class DeleteTaskView(generic.DetailView):
     model = Task

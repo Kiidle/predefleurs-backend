@@ -89,14 +89,18 @@
                             {% endif %}
                         </div>
                     </div>
-                    <a class="change" href="{% url 'task_assign' task.id %}">Ändern</a>
+                    {% if request.user == task.author %}
+                        <a class="change" href="{% url 'task_assign' task.id %}">Ändern</a>
+                    {% endif %}
                     <div class="attribute">
                         <p>Status</p>
                     </div>
                     <div class="status">
                         {{ task.status }}
                     </div>
-                    <a class="change" href="{% url 'task_status' task.id %}">Ändern</a>
+                    {% if request.user == task.author or request.user == task.assigned %}
+                        <a class="change" href="{% url 'task_status' task.id %}">Ändern</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
