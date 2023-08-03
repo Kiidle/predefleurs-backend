@@ -62,7 +62,7 @@
 }
 
 .sidebar .flexify .grid .section .current {
-    filter: invert(74%) sepia(60%) saturate(2559%) hue-rotate(357deg) brightness(98%) contrast(108%);
+    filter: invert(67%) sepia(35%) saturate(366%) hue-rotate(6deg) brightness(85%) contrast(87%);
 }
 
 .sidebar .flexify .grid .section .not-current .icon,
@@ -107,11 +107,11 @@
 }
 
 .sidebar .loginout-dashboard {
-    background-color: #ffae00;
+    background-color: #a99869;
 }
 
 .sidebar .loginout-dashboard:hover {
-    background-color: #ff8800;
+    background-color: #a99869;
 }
 
 @media screen and (max-width: 790px) {

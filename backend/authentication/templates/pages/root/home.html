@@ -34,14 +34,14 @@
                         </a>
                     </div>
                     <div class="cell">
-                        <div class="card">
+                        <a href="{% url 'about' %}" class="card">
                             <div class="icon">
                                 <img src="{% static 'svgs/info.svg' %}" alt="about"/>
                             </div>
                             <div class="title">
                                 <p>Über uns</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="cell">
                         {% if request.user.is_authenticated %}

@@ -84,7 +84,7 @@ def delete_article(request, pk):
     return (request, "/shop", {"article": article})
 
 
-class ReservationView(generic.ListView):
+class ReservationsView(generic.ListView):
     model = Reservation
     fields = ['article', 'start_date', 'status']
     template_name = "pages/reservation/reservations.html"
@@ -127,3 +127,31 @@ def create_reservation(request, article_id):
         return redirect('reservations')
     else:
         return redirect('login')
+
+class ReservationView(generic.DetailView):
+    model = Reservation
+    fields = ['article', 'start_date', 'status']
+    template_name = "pages/reservation/reservation.html"
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+class DeleteReservationView(generic.DetailView):
+    model = Reservation
+    fields = ['article', 'start_date', 'status']
+    template_name = "pages/reservation/delete_reservation.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+def delete_reservation(request, pk):
+    reservation = Reservation.objects.get(pk=pk)
+
+    if request.method == "POST":
+        reservation.delete()
+        return redirect("articles")
+
+    return (request, "/", {"reservation": reservation})
+

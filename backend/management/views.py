@@ -1,9 +1,11 @@
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
 from management.models import Task
+from store.models import Reservation
 
 
 # Create your views here.
@@ -162,3 +164,51 @@ def delete_task(request, pk):
         return redirect("board")
 
     return (request, "/management", {"task": task})
+
+class ManageReservationsView(generic.ListView):
+    model = Reservation
+    fields = ['article', 'start_date', 'status']
+    template_name = "pages/reservations.html"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        queryset = queryset.filter(Q(status=Reservation.Status.OPEN) | Q(status=Reservation.Status.APPROVED) | Q(status=Reservation.Status.READY))
+        return queryset
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["reservations"] = self.get_queryset()
+        return context
+
+class ManageReservationsArchivedView(generic.ListView):
+    model = Reservation
+    fields = ['article', 'start_date', 'status']
+    template_name = "pages/reservation_archived.html"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        queryset = queryset.filter(Q(status=Reservation.Status.DENIED) | Q(status=Reservation.Status.DONE))
+        return queryset
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["reservations"] = self.get_queryset()
+        return context
+
+class UpdateReservation(generic.UpdateView):
+    model = Reservation
+    fields = ['status']
+    template_name = "pages/form_reservation.html"
+
+    def get_success_url(self):
+        return reverse_lazy('manage_reservations')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        return super().form_valid(form)
+

@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_about.css' %}">
+    <title>Über uns</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Über uns" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="about" %}
+    {% include 'components/subsidebar/subsidebar_about.html' with page="about" %}
+
+
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="flexify">
+                <div class="block">
+                    {% if request.user.is_authenticated %}
+                        {% for group in request.user.groups.all %}
+                            {% if group.name == 'admin' %}
+                                <div class="container-button">
+                                    <a class="button add" href="{% url 'about_create' %}">
+                                        <img src="{% static 'svgs/add.svg' %}" alt="add"/>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% for about in abouts %}
+                        {% if about.image %}
+                            <div class="with-image">
+                                <div class="title">
+                                    <p class="data-number">{{ about.number }}</p>
+                                    <p class="data-title">{{ about.title }}</p>
+                                </div>
+                                <div class="description">
+                                    {{ about.description }}
+                                </div>
+                                <div class="image">
+                                    <img src="{{ about.get_image_url }}"
+                                         alt="{{ about.get_image_url }}"/>
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                    {% for group in request.user.groups.all %}
+                                        {% if group.name == 'admin' %}
+                                            <div class="buttons">
+                                                <a href="{% url 'about_update' about.id %}" class="button modify">
+                                                    <img src="{% static 'svgs/modify.svg' %}" alt="modify"/>
+                                                </a>
+                                                <a href="{% url 'about_delete' about.id %}" class="button delete">
+                                                    <img src="{% static 'svgs/delete.svg' %}" alt="delete"/>
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="no-image">
+                                <div class="title">
+                                    <p class="data-number">{{ about.number }}</p>
+                                    <p class="data-title">{{ about.title }}</p>
+                                </div>
+                                <div class="description">
+                                    {{ about.description }}
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                    {% for group in request.user.groups.all %}
+                                        {% if group.name == 'admin' %}
+                                            <div class="buttons">
+                                                <a href="{% url 'about_update' about.id %}" class="button modify">
+                                                    <img src="{% static 'svgs/modify.svg' %}" alt="modify"/>
+                                                </a>
+                                                <a href="{% url 'about_delete' about.id %}" class="button delete">
+                                                    <img src="{% static 'svgs/delete.svg' %}" alt="delete"/>
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>

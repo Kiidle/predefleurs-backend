@@ -25,4 +25,5 @@ urlpatterns = [
     path("management/", include("management.urls")),
     path("media/", include("media.urls")),
     path("shop/", include("store.urls")),
+    path("about/", include("about.urls")),
 ]

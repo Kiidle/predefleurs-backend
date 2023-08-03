@@ -1,0 +1,77 @@
+{% load static %}
+
+<div class="sidebar">
+    <div class="flexify">
+        <div class="grid">
+            {% if page == 'about' %}
+                <a href="{% url 'about' %}" class="section">
+                    <div class="current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/products.svg' %}" alt="about"/>
+                        </div>
+                        <div class="text">
+                            <p>Über uns</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'about' %}" class="section">
+                    <div class="not-current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/products.svg' %}" alt="about"/>
+                        </div>
+                        <div class="text">
+                            <p>Über uns</p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+            {% if page == 'opening' %}
+                <a href="{% url 'opening' %}" class="section">
+                    <div class="current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/clock-time-three.svg' %}" alt="opening"/>
+                        </div>
+                        <div class="text">
+                            <p>Öffnungszeiten</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'opening' %}" class="section">
+                    <div class="not-current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/clock-time-three.svg' %}" alt="opening"/>
+                        </div>
+                        <div class="text">
+                            <p>Öffnungszeiten</p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+            {% if page == 'job' %}
+                <a href="{% url 'opening' %}" class="section">
+                    <div class="current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/briefcase-search.svg' %}" alt="opening"/>
+                        </div>
+                        <div class="text">
+                            <p>Stellenangebote</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'opening' %}" class="section">
+                    <div class="not-current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/briefcase-search.svg' %}" alt="opening"/>
+                        </div>
+                        <div class="text">
+                            <p>Stellenangebote</p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
