@@ -26,6 +26,52 @@
                     </div>
                 </a>
             {% endif %}
+        {% if page == 'manage_reservations' %}
+                <a href="{% url 'manage_reservations' %}" class="section">
+                    <div class="current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/reservations.svg' %}" alt="reservation"/>
+                        </div>
+                        <div class="text">
+                            <p>Reservierungen</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'manage_reservations' %}" class="section">
+                    <div class="not-current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/reservations.svg' %}" alt="reservation"/>
+                        </div>
+                        <div class="text">
+                            <p>Reservierungen</p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+                {% if page == 'reservation' %}
+                <a href="{% url 'board' %}" class="section">
+                    <div class="current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/account-cog.svg' %}" alt="reservation"/>
+                        </div>
+                        <div class="text">
+                            <p>Benutzerverwaltung</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'board' %}" class="section">
+                    <div class="not-current">
+                        <div class="icon">
+                            <img src="{% static 'svgs/account-cog.svg' %}" alt="reservation"/>
+                        </div>
+                        <div class="text">
+                            <p>Benutzerverwaltung</p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_about.css' %}">
+    <title>Öffnungszeiten</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Über uns" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="about" %}
+    {% include 'components/subsidebar/subsidebar_about.html' with page="opening" %}
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="flexify">
+                <div class="block">
+                    <div class="subpagetitle">
+                        <p>Öffnungszeiten</p>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        {% for group in request.user.groups.all %}
+                            {% if group.name == 'admin' %}
+                                {% for opening in openings %}
+                                    <div class="day">
+                                        <div class="name">
+                                            <p>{{ opening.day }}</p>
+                                        </div>
+                                        <div class="morning">
+                                            {% if opening.time_morning_from and opening.time_morning_to %}
+                                                <p>{{ opening.time_morning_from|time:"H:i" }} - {{ opening.time_morning_to|time:"H:i" }}</p>
+                                            {% else %}
+                                                <p class="closed">Geschlossen</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="afternoon">
+                                            {% if opening.time_afternoon_from and opening.time_afternoon_to %}
+                                                <p>{{ opening.time_afternoon_from|time:"H:i" }}
+                                                    - {{ opening.time_afternoon_to|time:"H:i" }}</p>
+                                            {% else %}
+                                                <p class="closed">Geschlossen</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="buttons-opening">
+                                            <a href="{% url 'opening_update' opening.id %}" class="button modify">
+                                                <img src="{% static 'svgs/modify.svg' %}" alt="modify"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% for opening in openings %}
+                                    <div class="day-noperm">
+                                        <div class="name">
+                                            <p>{{ opening.day }}</p>
+                                        </div>
+                                        <div class="morning">
+                                            {% if opening.time_morning_from and opening.time_morning_to %}
+                                                <p>{{ opening.time_morning_from|time:"H:i" }} - {{ opening.time_morning_to|time:"H:i" }}</p>
+                                            {% else %}
+                                                <p class="closed">Geschlossen</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="afternoon">
+                                            {% if opening.time_afternoon_from and opening.time_afternoon_to %}
+                                                <p>{{ opening.time_afternoon_from|time:"H:i" }}
+                                                    - {{ opening.time_afternoon_to|time:"H:i" }}</p>
+                                            {% else %}
+                                                <p class="closed">Geschlossen</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% for opening in openings %}
+                            <div class="day-noperm">
+                                <div class="name">
+                                    <p>{{ opening.day }}</p>
+                                </div>
+                                <div class="morning">
+                                    {% if opening.time_morning_from and opening.time_morning_to %}
+                                        <p>{{ opening.time_morning_from|time:"H:i" }} - {{ opening.time_morning_to|time:"H:i" }}</p>
+                                    {% else %}
+                                        <p class="closed">Geschlossen</p>
+                                    {% endif %}
+                                </div>
+                                <div class="afternoon">
+                                    {% if opening.time_afternoon_from and opening.time_afternoon_to %}
+                                        <p>{{ opening.time_afternoon_from|time:"H:i" }}
+                                            - {{ opening.time_afternoon_to|time:"H:i" }}</p>
+                                    {% else %}
+                                        <p class="closed">Geschlossen</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>

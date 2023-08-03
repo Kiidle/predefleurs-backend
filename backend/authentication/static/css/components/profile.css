@@ -9,6 +9,7 @@
 .profile .card {
     background-color: white;
     padding: 12px;
+    border-radius: 5px;
 }
 
 .profile .card .login {
@@ -57,7 +58,7 @@
 }
 
 .profile .card .grid .role .customer {
-    color: #ff8800;
+    color: #a99869;
 }
 
 .profile .card .grid .role .staff {

@@ -54,7 +54,7 @@ class Personal(models.Model):
     class Sex(models.TextChoices):
         MALE = "Männlich", "männlich"
         FEMALE = "Weiblich", "weiblich"
-        diverse = "Divers", "divers"
+        DIVERSE = "Divers", "divers"
 
     sex = models.CharField(max_length=50, choices=Sex.choices)
     nationality = models.CharField(max_length=50, null=True, blank=True)

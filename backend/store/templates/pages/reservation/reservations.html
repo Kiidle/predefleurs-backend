@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/pages/main_store.css' %}">
-    <title>Artikeln</title>
+    <title>Meine Reservierungen</title>
 </head>
 <body>
 {% include 'components/header/dashboard.html' with title="Produkte" %}
@@ -35,7 +35,7 @@
                 <p>Offen, Angenommen / Abgelehnt, Abholbereit, Abgeschlossen</p>
             </div>
             {% for reservation in reservations %}
-                <div class="reservation-card">
+                <a href="{% url 'reservation' reservation.id %}" class="reservation-card">
                     <p class="title">{{ reservation.article.title }}</p>
                     <p class="user">Bestellnummer: {{ reservation.id }}</p>
                     {% if reservation.status == "Offen" %}
@@ -54,9 +54,10 @@
                         <p class="status done">{{ reservation.status }}</p>
                     {% endif %}
                     <p class="date">{{ reservation.format_date }}</p>
-                </div>
+                </a>
             {% endfor %}
         </div>
     </div>
 </main>
+{% include 'components/footer.html' %}
 </body>

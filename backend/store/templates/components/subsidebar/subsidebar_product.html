@@ -26,28 +26,30 @@
                     </div>
                 </a>
             {% endif %}
-            {% if page == 'reservations' %}
-                <a href="{% url 'reservations' %}" class="section">
-                    <div class="current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/shopping_bag.svg' %}" alt="products"/>
+            {% if request.user.is_authenticated %}
+                {% if page == 'reservations' %}
+                    <a href="{% url 'reservations' %}" class="section">
+                        <div class="current">
+                            <div class="icon">
+                                <img src="{% static 'svgs/shopping_bag.svg' %}" alt="products"/>
+                            </div>
+                            <div class="text">
+                                <p>Reservierungen</p>
+                            </div>
                         </div>
-                        <div class="text">
-                            <p>Reservierungen</p>
+                    </a>
+                {% else %}
+                    <a href="{% url 'reservations' %}" class="section">
+                        <div class="not-current">
+                            <div class="icon">
+                                <img src="{% static 'svgs/shopping_bag.svg' %}" alt="products"/>
+                            </div>
+                            <div class="text">
+                                <p>Reservierungen</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            {% else %}
-                <a href="{% url 'reservations' %}" class="section">
-                    <div class="not-current">
-                        <div class="icon">
-                            <img src="{% static 'svgs/shopping_bag.svg' %}" alt="products"/>
-                        </div>
-                        <div class="text">
-                            <p>Reservierungen</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                {% endif %}
             {% endif %}
         </div>
     </div>

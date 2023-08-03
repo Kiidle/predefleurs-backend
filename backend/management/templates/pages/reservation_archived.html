@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_management.css' %}">
+    <title>Alle Reservierungen</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Management" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="about" %}
+    {% include 'components/subsidebar/subsidebar_management.html' with page="manage_reservations" %}
+
+
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="tab">
+                <a href="{% url 'manage_reservations' %}" class="tab1">
+                    <p>Aktuell</p>
+                </a>
+                <a href="{% url 'manage_reservations_archived' %}" class="tab2 current">
+                    <p>Archiv</p>
+                </a>
+            </div>
+            <div class="legende">
+                <p>Legende:</p>
+                <p>Offen, Angenommen / Abgelehnt, Abholbereit, Abgeschlossen</p>
+            </div>
+            {% for reservation in reservations %}
+                <a href="{% url 'manage_reservations_update' reservation.id %}" class="reservation-card">
+                    <p class="title">{{ reservation.article.title }}</p>
+                    <p class="number">Bestellnummer: {{ reservation.id }}</p>
+                    <p class="user">{{ reservation.user.first_name }} {{ reservation.user.last_name }} (@{{ reservation.user.username }}#{{ reservation.user.id }})</p>
+                    {% if reservation.status == "Offen" %}
+                        <p class="status open">{{ reservation.status }}</p>
+                    {% endif %}
+                    {% if reservation.status == "Angenommen" %}
+                        <p class="status approved">{{ reservation.status }}</p>
+                    {% endif %}
+                    {% if reservation.status == "Abgelehnt" %}
+                        <p class="status denied">{{ reservation.status }}</p>
+                    {% endif %}
+                    {% if reservation.status == "Abholbereit" %}
+                        <p class="status ready">{{ reservation.status }}</p>
+                    {% endif %}
+                    {% if reservation.status == "Abgeschlossen" %}
+                        <p class="status done">{{ reservation.status }}</p>
+                    {% endif %}
+                    <p class="date">{{ reservation.format_date }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>

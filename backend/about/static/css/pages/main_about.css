@@ -1,0 +1,336 @@
+.content {
+    display: flex;
+    width: 100%;
+    padding: 12px;
+    overflow-y: scroll;
+    height: calc(100vh - 75px);
+}
+
+.content .subpagetitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.content .blockify {
+    display: block;
+    width: 100%;
+}
+
+.content .form-card {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-color: #d9d9d9;
+    border-style: solid;
+    border-width: 1px;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.content .form-card .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.content .form-card .buttons {
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "cancel delete";
+}
+
+.content .form-card .delete-button {
+    grid-area: delete;
+    background-color: #9d0300;
+    margin: 12px 0;
+    font-size: 1.2rem;
+}
+
+.content .form-card .delete-button:hover {
+    background-color: #730200;
+}
+
+.content .form-card .cancel-button {
+    grid-area: cancel;
+    background-color: gray;
+    height: 48px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 2px;
+    margin: 12px 0;
+    font-size: 1.2rem;
+}
+
+.content .form-card .cancel-button:hover {
+    background-color: #757575;
+}
+
+.content .blockify .tab {
+    width: 1024px;
+    height: 32px;
+    margin: 12px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "tab1 tab2";
+    background-color: #eeeeee;
+    color: gray;
+}
+
+.content .blockify .tab a {
+    text-decoration: none;
+    color: gray;
+}
+
+.content .blockify .tab1:hover {
+    background-color: #dedede;
+}
+
+.content .blockify .tab .tab1 {
+    grid-area: tab1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right-color: #d9d9d9;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+.content .blockify .tab .current {
+    border-bottom-color: #a99869;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+.content .blockify .tab2:hover {
+    background-color: #dedede;
+}
+
+.content .blockify .tab .tab2 {
+    grid-area: tab2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left-color: #d9d9d9;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+.content .blockify .container-button {
+    padding: 0 12px;
+}
+
+.content .blockify .add {
+    background-color: #009543;
+}
+
+.content .blockify .modify {
+    background-color: gray;
+}
+
+.content .blockify .delete {
+    background-color: #9d0300;
+}
+
+.content .blockify .button {
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    width: 32px;
+    padding: 6px;
+    margin: 12px 0;
+    border-radius: 2px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.content .blockify .button:hover {
+    transform: scale(1.1);
+}
+
+.content .blockify .articles .cell .card .button {
+    margin: 0 6px;
+}
+
+.content .blockify .button img {
+    filter: invert();
+}
+
+.content .blockify .flexify {
+    display: flex;
+    justify-content: center;
+}
+
+.content .blockify .flexify .block {
+    max-width: 1024px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.content .blockify .flexify .block .no-image {
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas:
+        "title buttons"
+        "description description";
+    grid-gap: 12px;
+    margin: 12px;
+}
+
+.content .blockify .flexify .block .title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+}
+
+.content .blockify .flexify .block .title .data-number {
+    font-weight: lighter;
+    font-size: 0.8rem;
+    color: gray;
+}
+
+.content .blockify .flexify .block .title .data-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0 6px;
+}
+
+.content .blockify .flexify .block .description {
+    grid-area: description;
+    color: gray;
+}
+
+.content .blockify .flexify .block .image {
+    grid-area: image;
+    display: flex;
+}
+
+.content .blockify .flexify .block .buttons {
+    grid-area: buttons;
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "cancel delete";
+}
+
+.content .blockify .flexify .block .buttons-opening {
+    grid-area: buttons;
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "cancel";
+}
+
+.content .blockify .flexify .block .image img {
+    width: 100%;
+}
+
+.content .blockify .flexify .block .with-image {
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 250px 1fr auto;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas:
+        "title title buttons"
+        "image description description";
+    grid-gap: 12px;
+    margin: 12px;
+}
+
+.content .blockify .flexify .block .day {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    grid-template-rows: 25px 25px;
+    grid-template-areas:
+        "name morning . buttons"
+        "name afternoon . buttons";
+    padding: 12px;
+    border-top-color: #d9d9d9;
+    border-top-width: 1px;
+    border-top-style: solid;
+    align-items: center;
+}
+
+.content .blockify .flexify .block .day-noperm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 25px 25px;
+    grid-template-areas:
+        "name morning"
+        "name afternoon";
+    padding: 12px;
+    border-top-color: #d9d9d9;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.content .blockify .flexify .block .day-noperm .name,
+.content .blockify .flexify .block .day .name {
+    grid-area: name;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.content .blockify .flexify .block .day-noperm .morning,
+.content .blockify .flexify .block .day .morning {
+    grid-area: morning;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content .blockify .flexify .block .day-noperm .afternoon,
+.content .blockify .flexify .block .day .afternoon {
+    grid-area: afternoon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content .blockify .flexify .block .day .morning .closed,
+.content .blockify .flexify .block .day .afternoon .closed,
+.content .blockify .flexify .block .day-noperm .morning .closed,
+.content .blockify .flexify .block .day-noperm .afternoon .closed {
+    color: red;
+}
+
+@media screen and (max-width: 1011px) {
+
+    .content .blockify .flexify .block .with-image {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px auto 1fr;
+        grid-template-areas:
+        "title"
+        "image"
+        "description";
+    }
+}

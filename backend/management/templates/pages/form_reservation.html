@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_board.css' %}">
+    <title>Reservierung aktualisieren</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Management" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="management" %}
+    {% include 'components/subsidebar/subsidebar_management.html' with page="manage_reservations" %}
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="flexify">
+                <div class="form-card">
+                    {% if task.id %}
+                        <p class="title">{{ title }}</p>
+                    {% else %}
+                        <p class="title">Reservierung aktualisieren</p>
+                    {% endif %}
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        {% if reservation.id %}
+                            <button type="submit">Aktualisieren</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>
