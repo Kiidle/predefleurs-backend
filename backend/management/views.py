@@ -1,11 +1,17 @@
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib import messages
 
 from management.models import Task
 from store.models import Reservation
+
+User = get_user_model()
+
 
 
 # Create your views here.
@@ -209,6 +215,87 @@ class UpdateReservation(generic.UpdateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-
         return super().form_valid(form)
 
+class ManageUsersView(generic.ListView):
+    model = User
+    fields = ['first_name', 'last_name', 'username']
+    template_name = "pages/users/users.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["users"] = self.get_queryset()
+        context["users_admin"] = self.get_queryset().filter(groups__name='admin')
+        context["users_developer"] = self.get_queryset().filter(groups__name='developer')
+        context["users_staff"] = self.get_queryset().filter(groups__name='staff')
+        context["users_customer"] = self.get_queryset().filter(groups__name='customer')
+        return context
+
+class ManageUserView(generic.DetailView):
+    model = User
+    fields = ['first_name', 'last_name', 'username']
+    template_name = "pages/users/user.html"
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        username = self.kwargs.get(self.slug_url_kwarg)
+        queryset = queryset.filter(username=username)
+        obj = get_object_or_404(queryset)
+        return obj
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+class ChangeUsergroupView(generic.UpdateView):
+    template_name = 'pages/users/update_role.html'
+
+    def get(self, request, username):
+        user = get_object_or_404(User, username=username)
+        groups = Group.objects.all()
+        context = {'user': user, 'groups': groups}
+        return render(request, self.template_name, context)
+
+    def post(self, request, username):
+        user = get_object_or_404(User, username=username)
+        group_id = request.POST.get('group')
+        if group_id:
+            group = get_object_or_404(Group, id=group_id)
+            user.groups.clear()  # Clear existing groups
+            user.groups.add(group)
+            messages.success(request, f'Group for {user.username} has been updated.')
+            return redirect('manage_user', username=user.username)
+        return redirect('manage_user', username=user.username)
+
+
+class ManageUserPersonalMetaView(generic.DetailView):
+    model = User
+    template_name = "pages/users/personal/meta.html"
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        username = self.kwargs.get(self.slug_url_kwarg)
+        queryset = queryset.filter(username=username)
+        obj = get_object_or_404(queryset)
+        return obj
+
+class ManageUserPersonalMetaUpdateView(generic.UpdateView):
+    model = User
+    fields = ['username']
+    template_name = "pages/users/personal/form_meta.html"
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        username = self.kwargs.get(self.slug_url_kwarg)
+        queryset = queryset.filter(username=username)
+        obj = get_object_or_404(queryset)
+        return obj

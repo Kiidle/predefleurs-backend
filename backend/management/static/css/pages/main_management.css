@@ -25,6 +25,42 @@
     width: 100%;
 }
 
+.content .blockify .editor {
+    width: 100%;
+    background-color: #eeeeee;
+    height: 48px;
+    margin: -12px 0 12px 0;
+    display: grid;
+    grid-template-columns: auto 48px;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        ". edit";
+}
+
+.paper {
+    width: 100%;
+    max-width: 720px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    background-color: white;
+    padding: 24px;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.content .blockify .editor .edit {
+    display: flex;
+    grid-area: edit;
+    align-items: center;
+    justify-content: center;
+}
+
+.content .blockify .editor .edit img {
+    display: flex;
+    width: 32px;
+    justify-content: center;
+    align-items: center;
+}
+
 .content .blockify .legende {
     font-size: 0.7rem;
     color: gray;
@@ -173,6 +209,248 @@
     background-color: gray;
 }
 
+.content .blockify .user-card {
+    max-width: 1006px;
+    height: 60px;
+    margin: 2px auto;
+    background-color: white;
+    border-color: #d9d9d9;
+    border-width: 1px;
+    border-style: solid;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 44px auto 1fr 128px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "profile title . role"
+        "profile tag . .";
+    grid-gap: 12px;
+}
+
+.content .blockify .user-card:hover {
+    background-color: #eeeeee;
+}
+
+.content .blockify .user-card .profile-picture {
+    grid-area: profile;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content .blockify .user-card .profile-picture-uknown {
+    filter: brightness(0) saturate(100%) invert(56%) sepia(4%) saturate(13%) hue-rotate(346deg) brightness(96%) contrast(87%);
+}
+
+.content .blockify .user-card .title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: black;
+}
+
+.content .blockify .user-card .tag {
+    grid-area: tag;
+    color: gray;
+}
+
+.content .blockify .user-card .role {
+    grid-area: role;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.content .blockify .user-card .role .customer {
+    background-color: #a99869;
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .blockify .user-card .role .staff {
+    background-color: #5e53ff;
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .blockify .user-card .role .developer {
+    background-color: #37a9c7;
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .blockify .user-card .role .admin {
+    background-color: #9d0300;
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .blockify .category-title {
+    max-width: 1000px;
+    margin: 12px auto;
+    padding: 12px;
+}
+
+.content .blockify .user-detail {
+    background-color: white;
+    max-width: 1000px;
+    margin: 12px auto;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+.content .blockify .user-detail .data-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.content .blockify .user-detail data-container .data {
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        ". title"
+        ". username";
+}
+
+.content .blockify .user-detail .data-container .data .profile {
+    display: flex;
+    vertical-align: center;
+    justify-content: center;
+}
+
+.content .blockify .user-detail .data-container .data .profile-uknown {
+    filter: brightness(0) saturate(100%) invert(56%) sepia(4%) saturate(13%) hue-rotate(346deg) brightness(96%) contrast(87%);
+}
+
+.content .blockify .user-detail .data-container .data .profile img {
+    width: 100%;
+    height: 100%;
+}
+
+.content .blockify .user-detail .data-container .data .title {
+    grid-area: title;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.content .blockify .user-detail .data-container .data .username {
+    grid-area: username;
+    color: gray;
+    display: flex;
+    align-items: center;
+}
+
+
+.content .blockify .user-detail .user-cloud {
+    border-top-color: #d9d9d9;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-bottom-color: #d9d9d9;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    height: 48px;
+    margin: 0 -12px -1px -12px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    grid-template-rows: 48px;
+    grid-template-areas: "icon title";
+    grid-gap: 12px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.content .blockify .user-detail .user-cloud:hover {
+    background-color: #eeeeee;
+    border-radius: 5px;
+}
+
+.content .blockify .user-detail .user-cloud .icon {
+    grid-area: icon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: invert(42%) sepia(97%) saturate(2294%) hue-rotate(165deg) brightness(100%) contrast(101%);
+}
+
+.content .blockify .user-detail .user-cloud .icon img {
+    width: 100%;
+}
+
+.content .blockify .user-detail .user-cloud .file-title {
+    grid-area: title;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+.gridify-role {
+    display: grid;
+    grid-template-columns: auto 32px;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "role edit";
+}
+
+.edit {
+    display: flex;
+    filter: brightness(0) saturate(100%) invert(56%) sepia(4%) saturate(13%) hue-rotate(346deg) brightness(96%) contrast(87%);
+    cursor: pointer;
+}
+
+.edit img {
+    width: 100%;
+    height: 100%;
+}
+
+.detail-role {
+    grid-area: role;
+    color: gray;
+    display: flex;
+    align-items: center;
+}
+
+.detail-role .customer {
+    color: #a99869;
+}
+
+.detail-role .staff {
+    color: #5e53ff
+}
+
+.detail-role .developer {
+    color: #37a9c7
+}
+
+.detail-role .admin {
+    color: #9d0300
+}
 
 .content .form-card {
     width: 100%;

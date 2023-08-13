@@ -21,25 +21,37 @@
     {% include 'components/subsidebar/subsidebar_management.html' with page="board" %}
     <div class="content">
         <div class="blockify">
-            {% include 'components/profile/profile.html' %}
-            <div class="flexify">
-                <div class="form-card">
-                    {% if task.id %}
-                        <p class="title">{{ title }}</p>
-                    {% else %}
+            {% if task.id %}
+                {% if task.author == request.user or task.assigned == request.user %}
+                    {% include 'components/profile/profile.html' %}
+                    <div class="flexify">
+                        <div class="form-card">
+                            <p class="title">{{ title }}</p>
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit">Speichern</button>
+                            </form>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="access-denied">Zugriff verweigert</p>
+                {% endif %}
+            {% else %}
+                {% include 'components/profile/profile.html' %}
+                <div class="flexify">
+                    <div class="form-card">
                         <p class="title">Aufgabe hinzufügen</p>
-                    {% endif %}
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        {% if task.id %}
-                            <button type="submit">Speichern</button>
-                        {% else %}
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
                             <button type="submit">Hinzufügen</button>
-                        {% endif %}
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
+
+
         </div>
     </div>
 </main>

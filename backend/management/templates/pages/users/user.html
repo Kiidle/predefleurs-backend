@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_management.css' %}">
+    <title>Benutzer </title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Management" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="management" %}
+    {% include 'components/subsidebar/subsidebar_management.html' with page="manage_users" %}
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="user-detail">
+                <div class=" data-container">
+                    <div class="data">
+                        <div class="profile profile-uknown">
+                            <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                        </div>
+                        <div class="title">
+                            <p>{{ user.first_name }} {{ user.last_name }}</p>
+                        </div>
+                        <div class="username">
+                            <p>@{{ user.username }}#{{ user.id }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <div class="user-detail">
+                <div class="gridify-role">
+                    <div class="detail-role">
+                        {% for group in user.groups.all %}
+                            {% if group.name == 'customer' %}
+                                <p class="customer">Kunde</p>
+                            {% elif group.name == 'staff' %}
+                                <p class="staff">Mitarbeiter</p>
+                            {% elif group.name == 'developer' %}
+                                <p class="developer">Entwickler</p>
+                            {% elif group.name == 'admin' %}
+                                <p class="admin">Administrator</p>
+                            {% else %}
+                                <p class="unverified">Unverifizierte Gruppe</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        {% for group in request.user.groups.all %}
+                            {% if group.name == 'admin' %}
+                                {% if user != request.user %}
+                                    <a href="{% url 'manage_user_change_roles' user.username %}" class="edit">
+                                        <img src="{% static 'svgs/modify.svg' %}"/>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <h2 class="category-title">Personalakte</h2>
+            <div class="user-detail">
+                <a href="{% url 'manage_user_personal_meta' user.username %}" class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/document_contact.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Stammakten</p>
+                    </div>
+                </a>
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/document-address.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Adressakten</p>
+                    </div>
+                </div>
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/folder.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Qualifikationsakten</p>
+                    </div>
+                </div>
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/document_health.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Gesundheitsakten</p>
+                    </div>
+                </div>
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/document-criminal.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Strafregisterakten</p>
+                    </div>
+                </div>
+            </div>
+                    <h2 class="category-title">Mitarbeiterakte</h2>
+            <div class="user-detail">
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/folder.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Mitarbeiterakten</p>
+                    </div>
+                </div>
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/document_salary.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Gehalts- und Vergütungsakten</p>
+                    </div>
+                </div>
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/document_health.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Krankheits- und Urlaubsakten</p>
+                    </div>
+                </div>
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/document_rapporte.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Leistungsbeurteilungsakten</p>
+                    </div>
+                </div>
+                <div class="user-cloud">
+                    <div class="icon">
+                        <img src="{% static 'svgs/document.svg' %}" alt="folder"/>
+                    </div>
+                    <div class="file-title">
+                        <p>Disziplinarakten</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>

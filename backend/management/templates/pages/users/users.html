@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_management.css' %}">
+    <title>Benutzerliste</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Management" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="management" %}
+    {% include 'components/subsidebar/subsidebar_management.html' with page="manage_users" %}
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            {% for user in users_admin %}
+                <a href="{% url 'manage_user' user.username %}" class="user-card">
+                    <div class="profile-picture profile-picture-uknown">
+                        <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                    </div>
+                    <p class="title">{{ user.first_name }} {{ user.last_name }}</p>
+                    <p class="tag">@{{ user.username }}#{{ user.id }}</p>
+                    <div class="role">
+                        {% for group in user.groups.all %}
+                            {% if group.name == 'customer' %}
+                                <p class="customer">Kunde</p>
+                            {% elif group.name == 'staff' %}
+                                <p class="staff">Mitarbeiter</p>
+                            {% elif group.name == 'developer' %}
+                                <p class="developer">Entwickler</p>
+                            {% elif group.name == 'admin' %}
+                                <p class="admin">Administrator</p>
+                            {% else %}
+                                <p class="unverified">Unverifizierte Gruppe</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </a>
+            {% endfor %}
+            {% for user in users_developer %}
+                <a href="{% url 'manage_user' user.username %}" class="user-card">
+                    <div class="profile-picture profile-picture-uknown">
+                        <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                    </div>
+                    <p class="title">{{ user.first_name }} {{ user.last_name }}</p>
+                    <p class="tag">@{{ user.username }}#{{ user.id }}</p>
+                    <div class="role">
+                        {% for group in user.groups.all %}
+                            {% if group.name == 'customer' %}
+                                <p class="customer">Kunde</p>
+                            {% elif group.name == 'staff' %}
+                                <p class="staff">Mitarbeiter</p>
+                            {% elif group.name == 'developer' %}
+                                <p class="developer">Entwickler</p>
+                            {% elif group.name == 'admin' %}
+                                <p class="admin">Administrator</p>
+                            {% else %}
+                                <p class="unverified">Unverifizierte Gruppe</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </a>
+            {% endfor %}
+            {% for user in users_staff %}
+                <a href="{% url 'manage_user' user.username %}" class="user-card">
+                    <div class="profile-picture profile-picture-uknown">
+                        <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                    </div>
+                    <p class="title">{{ user.first_name }} {{ user.last_name }}</p>
+                    <p class="tag">@{{ user.username }}#{{ user.id }}</p>
+                    <div class="role">
+                        {% for group in user.groups.all %}
+                            {% if group.name == 'customer' %}
+                                <p class="customer">Kunde</p>
+                            {% elif group.name == 'staff' %}
+                                <p class="staff">Mitarbeiter</p>
+                            {% elif group.name == 'developer' %}
+                                <p class="developer">Entwickler</p>
+                            {% elif group.name == 'admin' %}
+                                <p class="admin">Administrator</p>
+                            {% else %}
+                                <p class="unverified">Unverifizierte Gruppe</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </a>
+            {% endfor %}
+            {% for user in users_customer %}
+                <a href="{% url 'manage_user' user.username %}" class="user-card">
+                    <div class="profile-picture profile-picture-uknown">
+                        <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                    </div>
+                    <p class="title">{{ user.first_name }} {{ user.last_name }}</p>
+                    <p class="tag">@{{ user.username }}#{{ user.id }}</p>
+                    <div class="role">
+                        {% for group in user.groups.all %}
+                            {% if group.name == 'customer' %}
+                                <p class="customer">Kunde</p>
+                            {% elif group.name == 'staff' %}
+                                <p class="staff">Mitarbeiter</p>
+                            {% elif group.name == 'developer' %}
+                                <p class="developer">Entwickler</p>
+                            {% elif group.name == 'admin' %}
+                                <p class="admin">Administrator</p>
+                            {% else %}
+                                <p class="unverified">Unverifizierte Gruppe</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>

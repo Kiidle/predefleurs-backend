@@ -1,0 +1,72 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_settings.css' %}">
+    <title>Einstellungen</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Einstellungen" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="settings" %}
+    {% include 'components/subsidebar/subsidebar_settings.html' with page="personal" %}
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="flexify">
+                <div class="content-card">
+                    <p class="title">Personalakten</p>
+                    <a href="{% url 'settings_meta' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/document_contact.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Stammakten</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'settings_address' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/document-address.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Adressakten</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'settings_qualification' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/folder.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Qualifikationsakten</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'settings_health' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/document_health.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Gesundheitsakten</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'settings_criminal' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/document-criminal.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Strafregisterakten</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>

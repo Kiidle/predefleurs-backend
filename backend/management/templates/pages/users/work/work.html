@@ -1,0 +1,72 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/main_settings.css' %}">
+    <title>Einstellungen</title>
+</head>
+<body>
+{% include 'components/header/dashboard.html' with title="Einstellungen" %}
+<main>
+    {% include 'components/sidebar/sidebar.html' with page="settings" %}
+    {% include 'components/subsidebar/subsidebar_settings.html' with page="work" %}
+    <div class="content">
+        <div class="blockify">
+            {% include 'components/profile/profile.html' %}
+            <div class="flexify">
+                <div class="content-card">
+                    <p class="title">Mitarbeiterakten</p>
+                    <a href="" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/folder.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Arbeitsakten</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'settings_salary' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/document_salary.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Gehalts- und Vergütungsakten</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'settings_absence' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/document_health.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Krankheits- und Urlaubsakten</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'settings_feedback' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/document_rapporte.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Leistungsbeurteilungsakten</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'settings_reprimant' user.id %}" class="file">
+                        <div class="icon">
+                            <img src="{% static 'svgs/document.svg' %}"/>
+                        </div>
+                        <div class="file-title">
+                            <p>Disziplinarakten</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% include 'components/footer.html' %}
+</body>

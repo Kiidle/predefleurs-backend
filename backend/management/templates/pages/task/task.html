@@ -21,88 +21,94 @@
     {% include 'components/subsidebar/subsidebar_management.html' with page="board" %}
     <div class="content">
         <div class="blockify">
-            {% include 'components/profile/profile.html' %}
-            <div class="flexify">
-                <div class="task-card">
+            {% for group in request.user.groups.all %}
+                {% if group.name == 'admin' or group.name == 'developer' or group.name == 'staff' %}
+                    {% include 'components/profile/profile.html' %}
                     <div class="flexify">
-                        <p class="id">{{ task.id }}</p>
-                        {% if task.priority == "Sonderfall" %}
-                            <div class="priority priority-emergency">
-                                <p>{{ task.priority }}</p>
+                        <div class="task-card">
+                            <div class="flexify">
+                                <p class="id">{{ task.id }}</p>
+                                {% if task.priority == "Sonderfall" %}
+                                    <div class="priority priority-emergency">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                {% endif %}
+                                {% if task.priority == "Hoch" %}
+                                    <div class="priority priority-high">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                {% endif %}
+                                {% if task.priority == "Mittel" %}
+                                    <div class="priority priority-medium">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                {% endif %}
+                                {% if task.priority == "Niedrig" %}
+                                    <div class="priority priority-low">
+                                        <p>{{ task.priority }}</p>
+                                    </div>
+                                {% endif %}
                             </div>
-                        {% endif %}
-                        {% if task.priority == "Hoch" %}
-                            <div class="priority priority-high">
-                                <p>{{ task.priority }}</p>
-                            </div>
-                        {% endif %}
-                        {% if task.priority == "Mittel" %}
-                            <div class="priority priority-medium">
-                                <p>{{ task.priority }}</p>
-                            </div>
-                        {% endif %}
-                        {% if task.priority == "Niedrig" %}
-                            <div class="priority priority-low">
-                                <p>{{ task.priority }}</p>
-                            </div>
-                        {% endif %}
-                    </div>
-                    <p class="title">
-                        {{ task.title }}
-                    </p>
-                    <p class="description">{{ task.description }}</p>
-                </div>
-                <div class="task-sidebar">
-                    {% if task.author == request.user %}
-                        <div class="buttons">
-                            <a href="{% url 'task_update' task.id %}" class="button modify">
-                                <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
-                            </a>
-                            <a href="{% url 'task_delete' task.id %}" class="button delete">
-                                <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
-                            </a>
+                            <p class="title">
+                                {{ task.title }}
+                            </p>
+                            <p class="description">{{ task.description }}</p>
                         </div>
-                    {% endif %}
-                    <div class="attribute">
-                        Autor
-                    </div>
-                    <div class="user-card">
-                        <div class="grid">
-                            <div class="profile-picture">
-                                <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
-                            </div>
-                            <p class="name">{{ task.author.first_name }} {{ task.author.last_name }}</p>
-                        </div>
-                    </div>
-                    <div class="attribute">
-                        <p>Zuständigkeit</p>
-                    </div>
-                    <div class="user-card">
-                        <div class="grid">
-                            {% if task.assigned %}
-                                <div class="profile-picture">
-                                    <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                        <div class="task-sidebar">
+                            {% if task.author == request.user %}
+                                <div class="buttons">
+                                    <a href="{% url 'task_update' task.id %}" class="button modify">
+                                        <img src="{% static 'svgs/modify.svg' %}" alt="add"/>
+                                    </a>
+                                    <a href="{% url 'task_delete' task.id %}" class="button delete">
+                                        <img src="{% static 'svgs/delete.svg' %}" alt="add"/>
+                                    </a>
                                 </div>
-                                <p class="name">{{ task.assigned.first_name }} {{ task.assigned.last_name }}</p>
-                            {% else %}
-                                <p class="name">Nicht zugewiesen</p>
+                            {% endif %}
+                            <div class="attribute">
+                                Autor
+                            </div>
+                            <div class="user-card">
+                                <div class="grid">
+                                    <div class="profile-picture">
+                                        <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                                    </div>
+                                    <p class="name">{{ task.author.first_name }} {{ task.author.last_name }}</p>
+                                </div>
+                            </div>
+                            <div class="attribute">
+                                <p>Zuständigkeit</p>
+                            </div>
+                            <div class="user-card">
+                                <div class="grid">
+                                    {% if task.assigned %}
+                                        <div class="profile-picture">
+                                            <img src="{% static 'svgs/profile_filled.svg' %}" alt="profile"/>
+                                        </div>
+                                        <p class="name">{{ task.assigned.first_name }} {{ task.assigned.last_name }}</p>
+                                    {% else %}
+                                        <p class="name">Nicht zugewiesen</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if request.user == task.author %}
+                                <a class="change" href="{% url 'task_assign' task.id %}">Ändern</a>
+                            {% endif %}
+                            <div class="attribute">
+                                <p>Status</p>
+                            </div>
+                            <div class="status">
+                                {{ task.status }}
+                            </div>
+                            {% if request.user == task.author or request.user == task.assigned %}
+                                <a class="change" href="{% url 'task_status' task.id %}">Ändern</a>
                             {% endif %}
                         </div>
                     </div>
-                    {% if request.user == task.author %}
-                        <a class="change" href="{% url 'task_assign' task.id %}">Ändern</a>
-                    {% endif %}
-                    <div class="attribute">
-                        <p>Status</p>
-                    </div>
-                    <div class="status">
-                        {{ task.status }}
-                    </div>
-                    {% if request.user == task.author or request.user == task.assigned %}
-                        <a class="change" href="{% url 'task_status' task.id %}">Ändern</a>
-                    {% endif %}
-                </div>
-            </div>
+                {% else %}
+                    <p class="access-denied">Zugriff verweigert</p>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </main>

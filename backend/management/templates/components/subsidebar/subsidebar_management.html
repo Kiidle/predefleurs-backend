@@ -49,11 +49,11 @@
                     </div>
                 </a>
             {% endif %}
-                {% if page == 'reservation' %}
-                <a href="{% url 'board' %}" class="section">
+                {% if page == 'manage_users' %}
+                <a href="{% url 'manage_users' %}" class="section">
                     <div class="current">
                         <div class="icon">
-                            <img src="{% static 'svgs/account-cog.svg' %}" alt="reservation"/>
+                            <img src="{% static 'svgs/account-cog.svg' %}" alt="manage_users"/>
                         </div>
                         <div class="text">
                             <p>Benutzerverwaltung</p>
@@ -61,10 +61,10 @@
                     </div>
                 </a>
             {% else %}
-                <a href="{% url 'board' %}" class="section">
+                <a href="{% url 'manage_users' %}" class="section">
                     <div class="not-current">
                         <div class="icon">
-                            <img src="{% static 'svgs/account-cog.svg' %}" alt="reservation"/>
+                            <img src="{% static 'svgs/account-cog.svg' %}" alt="manage_users"/>
                         </div>
                         <div class="text">
                             <p>Benutzerverwaltung</p>
