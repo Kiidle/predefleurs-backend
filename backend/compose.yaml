@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  db:
+    image: postgres:15.2-alpine
+    environment:
+      POSTGRES_DB: tradesync_database
+      POSTGRES_USER: tradesync_db_admin
+      POSTGRES_PASSWORD: pw_tradesync.db.2023
+    volumes:
+      - ./var/db:/var/lib/postgresql/data
