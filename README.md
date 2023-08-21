@@ -1,12 +1,12 @@
-# PreDeFleurs
+# TradeSync
 
 ## In a Nutshell
-The web application developed by Kiidle for "predefleurs" is an extensive and professional product that supports the entire operation of the business. The system is extremely user-friendly and offers different roles with varying permissions to ensure that each employee and customers can do precisely what they need to. The warning system is another useful feature that helps keep all users on the same page, and the account profile system enables each user to modify and update their account information.</br></br>
+The web application "TradeSync" developed by Kiidle is an extensive and professional product that supports the entire operation of the business. The system is extremely user-friendly and offers different roles with varying permissions to ensure that each employee and customers can do precisely what they need to. The warning system is another useful feature that helps keep all users on the same page, and the account profile system enables each user to modify and update their account information.</br></br>
 The financial management module is an essential part of the application, allowing users to track all financial transactions and manage the business's income and expenses. The reservation and pre-ordering system is easy to use and provides a fast and efficient way for customers to order flower arrangements and gifts.</br></br>
 The application also offers an internal communication system that allows employees to communicate directly with each other, ensuring that everyone is on the same page. Additionally, the application has a robust management system that enables users to manage business information and access the data they need to perform their tasks efficiently.</br></br>
 The forum feature is available for both employees and customers, allowing for open communication and engagement. Additionally, the warning system is present for both employees and customers, and any abusive behavior or language on the forum can result in warnings for the offender.</br></br>
 It is also worth noting that the financial management feature is only accessible to specific authorized personnel, ensuring the data's confidentiality and security.</br></br>
-Overall, the web application for "predefleurs" is a comprehensive and valuable investment for anyone looking to improve their gift and flower shop's operation. Its user-friendly features and comprehensive management system make it a professional and powerful solution for managing the business effectively.</br></br>
+Overall, the web application "TradeSync" is a comprehensive and valuable investment for anyone looking to improve their gift and flower shop's operation. Its user-friendly features and comprehensive management system make it a professional and powerful solution for managing the business effectively.</br></br>
 
 ## Technologies
 ### Django
@@ -49,7 +49,7 @@ Congratulations! You have successfully installed Django on your computer. You ar
 4. Click on the "Clone or download" button and select "Use SSH" in the top right corner of the pop-up.
 5. Copy the SSH URL provided.
 6. In the command prompt or terminal, navigate to the directory where you want to clone the project.
-7. Type the command ```git clone git@github.com:Kiidle/predefleurs-backend.git``` and press Enter.
+7. Type the command ```git clone git@github.com:Kiidle/tradesync-backend.git``` and press Enter.
 8. Wait for the project to be cloned.
 
 #### Clone using HTTPS
@@ -58,7 +58,7 @@ Congratulations! You have successfully installed Django on your computer. You ar
 3. Click on the "Clone or download" button and select "Use HTTPS" in the top right corner of the pop-up.
 4. Copy the HTTPS URL provided.
 5. In the command prompt or terminal, navigate to the directory where you want to clone the project.
-6. Type the command ```git clone https://github.com/Kiidle/predefleurs-backend.git``` and press Enter.
+6. Type the command ```git clone https://github.com/Kiidle/tradesync-backend.git``` and press Enter.
 7. Wait for the project to be cloned.
 
 #### Run
